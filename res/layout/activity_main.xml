@@ -19,16 +19,6 @@
         android:text="Server Status:" />
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:text="Neuladen"
-        android:textStyle="bold" />
-
-    <Button
         android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,5 +118,24 @@
         android:layout_below="@+id/modtM"
         android:layout_marginTop="16dp"
         android:text="Version" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="Neuladen"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Beenden"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="X" />
 
 </RelativeLayout>
