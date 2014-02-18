@@ -32,5 +32,4 @@ public class ActivityRegistry
 			activity.finish();
 		}
 	}
-	
 }
