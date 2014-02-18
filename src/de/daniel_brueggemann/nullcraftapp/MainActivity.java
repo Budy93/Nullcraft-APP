@@ -32,7 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * @author A380
+ * @author Daniel Brüggemann
+ * @version Alpha 0.7
  *
  */
 public class MainActivity extends Activity implements OnClickListener
@@ -48,6 +49,8 @@ public class MainActivity extends Activity implements OnClickListener
 	public static TextView Modt;
 	public static TextView Serverversion;
 	public static Button Beenden;
+	public static Button Impressum;
+	public final static String ServerURL = "bau.nullcraft.de";
 	
 	@Override
 	protected void onStart()
@@ -100,18 +103,18 @@ public class MainActivity extends Activity implements OnClickListener
 		 * StrictMode.setThreadPolicy(policy);
 		 */
 		// .permitAll().build();
-		if(android.os.Build.VERSION.SDK_INT > 9)
-		{
-			final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-			        .permitNetwork().build();
-			StrictMode.setThreadPolicy(policy);
-		}
+		/*
+		 * if(android.os.Build.VERSION.SDK_INT > 9) { final
+		 * StrictMode.ThreadPolicy policy = new
+		 * StrictMode.ThreadPolicy.Builder() .permitNetwork().build();
+		 * StrictMode.setThreadPolicy(policy); }
+		 */
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		ActivityRegistry.register(this);
-		But = (Button) findViewById(R.id.button1);
-		text = (TextView) findViewById(R.id.textView2);
+		But = (Button) findViewById(R.id.back);
+		text = (TextView) findViewById(R.id.impresse);
 		But.setOnClickListener(this);
 		Version = (Button) findViewById(R.id.version);
 		Version.setOnClickListener(this);
@@ -125,24 +128,25 @@ public class MainActivity extends Activity implements OnClickListener
 		Modt = (TextView) findViewById(R.id.modtM);
 		Beenden = (Button) findViewById(R.id.Beenden);
 		Beenden.setOnClickListener(this);
+		Impressum = (Button) findViewById(R.id.impress);
+		Impressum.setOnClickListener(this);
 		/*
 		 * Vermerk hier Android Timer mit tasklevel setzen
 		 */
-		final HashMap JSON = pingServer("bau.nullcraft.de");
+		Networkthread Network = new Networkthreadimpl();
+		final HashMap JSON = Network.pingserver(ServerURL);
+		// final HashMap JSON = pingServer("bau.nullcraft.de");
 		if(JSON == null || JSON.get("status").equals("false"))
 		{
 			text.setTextColor(Color.RED);
 			text.setText("Offline Maxi on Work");
+			Player.setText("-");
+			Playermay.setText("-");
+			Modt.setText("");
+			Serverversion.setText("-");
 		}
 		else
 		{
-			/*
-			 * System.out.println("There are " + JSON.get("players") +
-			 * " out of " + JSON.get("players_max") + " online!");
-			 * System.out.println("MoTD is (" + JSON.get("motd") + ")"); public
-			 * TextView Player; public TextView Playermay; public TextView Modt;
-			 * public TextView Serverversion;
-			 */
 			text.setTextColor(Color.GREEN);
 			text.setText("Online");
 			final Object PlayerOI = JSON.get("players");
@@ -166,14 +170,18 @@ public class MainActivity extends Activity implements OnClickListener
 	{
 		if(v == But)
 		{
-			text.setText("Funktionstest");
 			// TODO Auto-generated method stub
-			
-			final HashMap JSON = pingServer("bau.nullcraft.de");
+			Networkthread Network = new Networkthreadimpl();
+			final HashMap JSON = Network.pingserver(ServerURL);
+			// final HashMap JSON = pingServer("bau.nullcraft.de");
 			if(JSON == null || JSON.get("status").equals("false"))
 			{
 				text.setTextColor(Color.RED);
 				text.setText("Offline Maxi on Work");
+				Player.setText("-");
+				Playermay.setText("-");
+				Modt.setText("");
+				Serverversion.setText("-");
 			}
 			else
 			{
@@ -197,61 +205,61 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Dynmap)
 		{
-			final Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse("http://cluster01.nullcraft.de:8123/"));
-			startActivity(intent);
+			if(android.os.Build.VERSION.SDK_INT > 13)
+			{
+				Intent in = new Intent(MainActivity.this, Dynmap.class);
+				startActivity(in);
+			}
+			else
+			{
+				final Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri.parse("http://cluster01.nullcraft.de:8123/"));
+				startActivity(intent);
+			}
 		}
 		else if(v == Version)
 		{
-			/*
-			 * SingleButtton.setOnClickListener(new View.OnClickListener() {
-			 * 
-			 * public void onClick(View arg0) { // Creating alert Dialog with
-			 * one Button
-			 * 
-			 * AlertDialog alertDialog = new
-			 * AlertDialog.Builder(AlertDialogActivity.this).create();
-			 * 
-			 * // Setting Dialog Title alertDialog.setTitle("Alert Dialog");
-			 * 
-			 * // Setting Dialog Message
-			 * alertDialog.setMessage("Welcome to Android Application");
-			 * 
-			 * // Setting Icon to Dialog alertDialog.setIcon(R.drawable.tick);
-			 * 
-			 * // Setting OK Button alertDialog.setButton("OK", new
-			 * DialogInterface.OnClickListener() {
-			 * 
-			 * public void onClick(DialogInterface dialog,int which) { // Write
-			 * your code here to execute after dialog closed
-			 * Toast.makeText(getApplicationContext(),"You clicked on OK",
-			 * Toast.LENGTH_SHORT).show(); } });
-			 * 
-			 * // Showing Alert Message alertDialog.show();
-			 * 
-			 * } });
-			 */
-			final AlertDialog alertDialog = new AlertDialog.Builder(this)
-			        .create();
+			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 			alertDialog.setTitle("Version");
-			alertDialog.setMessage("Version: Alpha 0.6"+"\n"+"Codename: Saui"+"\n"+"Autor: Budy93");
+			alertDialog.setMessage("Version: Alpha 0.7.1.E3" + "\n"
+			        + "Codename: Krähe.Vanny" + "\n" + "Autor: Budy93");
+			alertDialog.setPositiveButton("OK",
+			        new DialogInterface.OnClickListener()
+			        {
+				        public void onClick(DialogInterface dialog, int which)
+				        {
+					        dialog.cancel();
+				        }
+			        });
 			alertDialog.show();
-			Toast.makeText(this,
-					"Version: Alpha 0.6"+"\n"+"Codename: Saui"+"\n"+"Autor: Budy93",
-			        Toast.LENGTH_LONG).show();
+			Toast.makeText(
+			        this,
+			        "Version: Alpha 0.7.1.E3" + "\n" + "Codename: Krähe.Vanny" + "\n"
+			                + "Autor: Budy93", Toast.LENGTH_LONG).show();
+		}
+		else if(v == Impressum)
+		{
+			Intent in = new Intent(MainActivity.this, ImpressActivity.class);
+			startActivity(in);
 		}
 		else if(v == Beenden)
 		{
 			bendendiagloge();
 		}
 	}
+	
 	public static void tasklevel()
 	{
-		final HashMap JSON = pingServer("bau.nullcraft.de");
+		Networkthread Network = new Networkthreadimpl();
+		final HashMap JSON = Network.pingserver(ServerURL);
 		if(JSON == null || JSON.get("status").equals("false"))
 		{
 			text.setTextColor(Color.RED);
 			text.setText("Offline Maxi on Work");
+			Player.setText("-");
+			Playermay.setText("-");
+			Modt.setText("");
+			Serverversion.setText("-");
 		}
 		else
 		{
@@ -268,33 +276,17 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 	}
 	
-	public static HashMap pingServer(String server)
-	{
-		try
-		{
-			final URL url = new URL("http://api.iamphoenix.me/get/?server_ip="
-			        + server);
-			try
-			{
-				final BufferedReader reader = new BufferedReader(
-				        new InputStreamReader(url.openStream()));
-				final String data = reader.readLine();
-				
-				final Gson gson = new Gson();
-				return gson.fromJson(data, HashMap.class);
-			}
-			catch (final MalformedURLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		catch (final IOException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
+	/*
+	 * public static HashMap pingServer(String server) { try { final URL url =
+	 * new URL("http://api.iamphoenix.me/get/?server_ip=" + server); try { final
+	 * BufferedReader reader = new BufferedReader( new
+	 * InputStreamReader(url.openStream())); final String data =
+	 * reader.readLine();
+	 * 
+	 * final Gson gson = new Gson(); return gson.fromJson(data, HashMap.class);
+	 * } catch (final MalformedURLException e) { e.printStackTrace(); } } catch
+	 * (final IOException e) { e.printStackTrace(); } return null; }
+	 */
 	public void bendendiagloge()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
@@ -330,5 +322,10 @@ public class MainActivity extends Activity implements OnClickListener
 			        }
 		        });
 		alertDialog2.show();
+	}
+	
+	public void onBackPressed()
+	{
+		bendendiagloge();
 	}
 }
