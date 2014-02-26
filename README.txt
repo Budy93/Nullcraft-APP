@@ -1,7 +1,11 @@
 Nullcraft-APP
 =============
 
-App für den Server Nullcraft, verändern des Codes ist nicht gestattet. Die aktuelle Version ist Alpha v.0.7.1.E3
+App für den Server Nullcraft, verändern des Codes ist nicht gestattet, verwendet des codes ist unter klarer Namensnennung
+des Autors und dieses Projektes im Impressum erlaubt. 
+Autor: Daniel Brüggemann, (Budy93)
+
+Die aktuelle Version ist Alpha v.0.7.1.E3
 mit folgenden Changelog:
 
  Update Alpha 0.7.1.E3
