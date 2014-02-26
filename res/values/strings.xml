@@ -4,5 +4,8 @@
     <string name="app_name">Nullcraft App</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="impressum">Impressum</string>
+    <string name="beenden">Beenden</string>
+    <string name="haupt">Hauptmenü</string>
 
 </resources>
