@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 
 /**
  * @author Daniel Brüggemann
- * @version Alpha 0.7
+ * @version Alpha 0.8
  *
  */
 public class ImpressActivity extends Activity implements OnClickListener
@@ -49,7 +51,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button)findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Alpha 0.7.1.E3"
+		String Text = "Version: Alpha 0.8.0.E1"
 		        + "\n"
 		        + "Codename: Krähe.Vanny"
 		        + "\n"
@@ -59,6 +61,11 @@ public class ImpressActivity extends Activity implements OnClickListener
 		        + "Angaben gemäß § 5 TMG:"
 		        + "\n"
 		        + "\n"
+		        + "Daniel Brüggemann"
+		        + "\n"
+		        + "Weskammstr. 13"
+		        + "\n"
+		        + "12279 Berlin"
 		        + "\n"
 		        + "\n"
 		        + "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien etc. wird hiermit ausdrücklich widersprochen. Der Betreiber der APP behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen etc., etwa durch Spam-Mails , vor."
@@ -118,6 +125,29 @@ public class ImpressActivity extends Activity implements OnClickListener
 	 * menu; this adds items to the action bar if it is present.
 	 * getMenuInflater().inflate(R.menu.main, menu); return true; }
 	 */
+	public boolean onCreateOptionsMenu(Menu menu)
+	{ // Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		Intent intent = null;
+		switch (item.getItemId())
+		{
+			case R.id.item3:
+				intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
+				return true;
+			case R.id.item2:
+				bendendiagloge();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+	
 	@Override
 	public void onClick(View v)
 	{
