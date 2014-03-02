@@ -169,7 +169,7 @@ public class MainActivity extends Activity implements OnClickListener
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{ // Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.main_menue, menu);
 		return true;
 	}
 	
@@ -178,13 +178,17 @@ public class MainActivity extends Activity implements OnClickListener
 		Intent intent = null;
 		switch (item.getItemId())
 		{
-			case R.id.item1:
+			case R.id.test:
 				intent = new Intent(this, ImpressActivity.class);
 				startActivity(intent);
+				//ActivityRegistry.finishthis();
 				return true;
-			case R.id.item2:
+			case R.id.Beendenme:
 				bendendiagloge();
 				return true;
+			case R.id.plugin_dj:
+				intent = new Intent(this, PluginDj.class);
+				startActivity(intent);
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -230,7 +234,7 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Dynmap)
 		{
-			if(android.os.Build.VERSION.SDK_INT > 13)
+			if(android.os.Build.VERSION.SDK_INT > 14)
 			{
 				Intent in = new Intent(MainActivity.this, Dynmap.class);
 				startActivity(in);
@@ -246,7 +250,7 @@ public class MainActivity extends Activity implements OnClickListener
 		{
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 			alertDialog.setTitle("Version");
-			alertDialog.setMessage("Version: Alpha 0.8.0.E1" + "\n"
+			alertDialog.setMessage("Version: Alpha 0.8.0.E2" + "\n"
 			        + "Codename: Vanny" + "\n" + "Autor: Budy93");
 			alertDialog.setPositiveButton("OK",
 			        new DialogInterface.OnClickListener()
@@ -259,7 +263,7 @@ public class MainActivity extends Activity implements OnClickListener
 			alertDialog.show();
 			Toast.makeText(
 			        this,
-			        "Version: Alpha 0.8.0.E1" + "\n" + "Codename: Vanny"
+			        "Version: Alpha 0.8.0.E2" + "\n" + "Codename: Vanny"
 			                + "\n" + "Autor: Budy93", Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)

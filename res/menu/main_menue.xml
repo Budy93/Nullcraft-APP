@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/test" android:title="@string/impressum"></item>
+    <item android:id="@+id/Beendenme" android:title="@string/beenden"></item>
+    <item android:id="@+id/plugin_dj" android:title="@string/plugin" android:visible="false" android:enabled="false"></item>
+    
+
+</menu>
