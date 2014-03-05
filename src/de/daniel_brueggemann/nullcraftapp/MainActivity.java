@@ -186,9 +186,6 @@ public class MainActivity extends Activity implements OnClickListener
 			case R.id.Beendenme:
 				bendendiagloge();
 				return true;
-			case R.id.plugin_dj:
-				intent = new Intent(this, PluginDj.class);
-				startActivity(intent);
 			default:
 				return super.onOptionsItemSelected(item);
 		}
