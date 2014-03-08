@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,7 +34,7 @@ import android.widget.Toast;
 
 /**
  * @author Daniel Brüggemann
- * @version Alpha 0.7
+ * @version Alpha 0.8
  *
  */
 public class MainActivity extends Activity implements OnClickListener
@@ -166,6 +167,31 @@ public class MainActivity extends Activity implements OnClickListener
 	 * getMenuInflater().inflate(R.menu.main, menu); return true; }
 	 */
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{ // Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main_menue, menu);
+		return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		Intent intent = null;
+		switch (item.getItemId())
+		{
+			case R.id.test:
+				intent = new Intent(this, ImpressActivity.class);
+				startActivity(intent);
+				//ActivityRegistry.finishthis();
+				return true;
+			case R.id.Beendenme:
+				bendendiagloge();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	@Override
 	public void onClick(View v)
 	{
 		if(v == But)
@@ -205,7 +231,7 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Dynmap)
 		{
-			if(android.os.Build.VERSION.SDK_INT > 13)
+			if(android.os.Build.VERSION.SDK_INT > 14)
 			{
 				Intent in = new Intent(MainActivity.this, Dynmap.class);
 				startActivity(in);
@@ -221,8 +247,8 @@ public class MainActivity extends Activity implements OnClickListener
 		{
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 			alertDialog.setTitle("Version");
-			alertDialog.setMessage("Version: Alpha 0.7.1.E3" + "\n"
-			        + "Codename: Krähe.Vanny" + "\n" + "Autor: Budy93");
+			alertDialog.setMessage("Version: Alpha 0.8.0.E2" + "\n"
+			        + "Codename: Vanny" + "\n" + "Autor: Budy93");
 			alertDialog.setPositiveButton("OK",
 			        new DialogInterface.OnClickListener()
 			        {
@@ -234,8 +260,8 @@ public class MainActivity extends Activity implements OnClickListener
 			alertDialog.show();
 			Toast.makeText(
 			        this,
-			        "Version: Alpha 0.7.1.E3" + "\n" + "Codename: Krähe.Vanny" + "\n"
-			                + "Autor: Budy93", Toast.LENGTH_LONG).show();
+			        "Version: Alpha 0.8.0.E2" + "\n" + "Codename: Vanny"
+			                + "\n" + "Autor: Budy93", Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)
 		{

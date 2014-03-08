@@ -8,36 +8,44 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
  * @author Daniel Brüggemann
  *
  */
-public class Dynmap extends Activity
+public class PluginDj extends Activity implements OnClickListener
 {
-	
 	private WebView browser;
+	private Button zuruck;
 	
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_dynmap);
+		setContentView(R.layout.activity_plugindj);
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		ActivityRegistry.register(this);
+		zuruck = (Button) findViewById(R.id.zurck_dj);
+		zuruck.setOnClickListener(this);
 		browser = (WebView) findViewById(R.id.plugindj);
 		WebSettings webSettings = browser.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		// browser.setWebViewClient(new Browser());
-		String url = "http://cluster01.nullcraft.de:8123/";
+		String url = "http://plug.dj/nullcraft/";
 		browser.loadUrl(url);
 	}
+	
 	public boolean onCreateOptionsMenu(Menu menu)
 	{ // Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_dynmap, menu);
@@ -64,6 +72,14 @@ public class Dynmap extends Activity
 				return super.onOptionsItemSelected(item);
 		}
 	}
+	public void onClick(View v)
+	{
+		if(v == zuruck)
+		{
+			Intent in = new Intent(this, MainActivity.class);
+			startActivity(in);
+		}
+	}
 	
 	public void onBackPressed()
 	{
@@ -75,10 +91,11 @@ public class Dynmap extends Activity
 		{
 			// Let the system handle the back button
 			// super.onBackPressed();
-			Intent in = new Intent(Dynmap.this, MainActivity.class);
+			Intent in = new Intent(this, MainActivity.class);
 			startActivity(in);
 		}
 	}
+	
 	public void bendendiagloge()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
