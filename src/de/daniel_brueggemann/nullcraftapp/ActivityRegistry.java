@@ -32,4 +32,11 @@ public class ActivityRegistry
 			activity.finish();
 		}
 	}
+	
+	public static void finishthis()
+	{
+		int index = _activities.size()-1;
+		Activity activity = _activities.get(index);
+		activity.finish();
+	}
 }

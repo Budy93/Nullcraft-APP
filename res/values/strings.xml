@@ -7,5 +7,8 @@
     <string name="impressum">Impressum</string>
     <string name="beenden">Beenden</string>
     <string name="haupt">Hauptmenü</string>
+    <string name="zuruck">Zurück</string>
+    <string name="plugin">Plugin.Dj</string>
+    
 
 </resources>

@@ -1,17 +1,12 @@
 package de.daniel_brueggemann.nullcraftapp;
 
-import de.daniel_brueggemann.nullcraftapp.R;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +46,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button)findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Alpha 0.8.0.E1"
+		String Text = "Version: Alpha 0.8.0.E2"
 		        + "\n"
 		        + "Codename: Krähe.Vanny"
 		        + "\n"
@@ -163,6 +158,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		else if(v == change)
 		{
 			String changtext;
+			String changetext_Alpha080E1;
 			String changtext_Alpha071E3;
 			String changtext_Alpha071E2;
 			String changtext_Alpha071E1;
