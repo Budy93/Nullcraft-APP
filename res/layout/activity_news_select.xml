@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.44" >
+
+        <Button
+            android:id="@+id/backfeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/tech" />
+
+        <Button
+            android:id="@+id/ankuedinews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/backfeed"
+            android:layout_alignLeft="@+id/backfeed"
+            android:layout_alignRight="@+id/backfeed"
+            android:text="@string/ankuendigung" />
+
+        <Button
+            android:id="@+id/aenderungshist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ankuedinews"
+            android:layout_alignRight="@+id/backfeed"
+            android:layout_below="@+id/backfeed"
+            android:text="@string/zuruck" />
+
+    </RelativeLayout>
+
+</TableLayout>

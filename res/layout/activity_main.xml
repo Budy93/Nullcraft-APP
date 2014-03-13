@@ -8,24 +8,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
+    <!-- android:background="@drawable/affe" -->
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/emc_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="15dp"
-        android:text="Server Status:" />
+        android:text="@string/SStatus" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/emc_text"
         android:layout_below="@+id/impresse"
-        android:text="Spieler Online:" />
+        android:text="@string/SPlayer" />
 
     <TextView
         android:id="@+id/textView4"
@@ -33,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
-        android:text="Max. Players:" />
+        android:text="@string/Splayermax" />
 
     <TextView
         android:id="@+id/textView5"
@@ -41,15 +42,15 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView4"
         android:layout_below="@+id/textView4"
-        android:text="Motd:" />
+        android:text="@string/MODT" />
 
     <TextView
         android:id="@+id/impresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBottom="@+id/emc_text"
         android:layout_alignLeft="@+id/playerO"
-        android:layout_alignTop="@+id/textView1" />
+        android:layout_alignTop="@+id/emc_text" />
 
     <TextView
         android:id="@+id/playerO"
@@ -92,14 +93,14 @@
         android:layout_alignLeft="@+id/textView5"
         android:layout_below="@+id/modtM"
         android:layout_marginTop="16dp"
-        android:text="Version" />
+        android:text="@string/Version" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/impress"
         android:layout_gravity="center_vertical|center_horizontal|fill_horizontal|center"
-        android:layout_toLeftOf="@+id/textView1"
+        android:layout_toLeftOf="@+id/emc_text"
         android:gravity="center_vertical|center_horizontal|fill_horizontal|center" >
     </LinearLayout>
 
@@ -156,5 +157,40 @@
         android:layout_alignBottom="@+id/back"
         android:layout_alignLeft="@+id/impress"
         android:text="X" />
+
+    <TextView
+        android:id="@+id/latency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/VersionText"
+        android:layout_below="@+id/VersionText"
+        android:text="@string/latency" />
+
+    <TextView
+        android:id="@+id/latency_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/latency"
+        android:layout_alignBottom="@+id/latency"
+        android:layout_alignLeft="@+id/VersionM"
+        android:text="@string/leer" />
+
+    <Button
+        android:id="@+id/news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Votel"
+        android:layout_alignLeft="@+id/Votel"
+        android:layout_alignRight="@+id/Votel"
+        android:text="@string/news" />
+
+    <TextView
+        android:id="@+id/TestURL2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Beenden"
+        android:layout_alignParentBottom="true"
+        android:text="@string/test"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

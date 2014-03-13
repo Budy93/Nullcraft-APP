@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/main_news" android:title="@string/haupt"></item>
+    <item android:id="@+id/news_impresse" android:title="@string/impressum"></item>
+    <item android:id="@+id/main_beenden" android:title="@string/beenden"></item>
+    
+
+</menu>
