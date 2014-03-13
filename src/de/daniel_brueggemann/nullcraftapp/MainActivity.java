@@ -1,29 +1,16 @@
 package de.daniel_brueggemann.nullcraftapp;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
-import de.daniel_brueggemann.nullcraftapp.R;
-
-import java.io.BufferedReader;
-import java.net.MalformedURLException;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +24,7 @@ import android.widget.Toast;
  * @version Alpha 0.8
  *
  */
+//Zwischenablage: btn.setBackgroundResource(R.drawable.soundoff);
 public class MainActivity extends Activity implements OnClickListener
 {
 	public static TextView text;
@@ -52,6 +40,10 @@ public class MainActivity extends Activity implements OnClickListener
 	public static Button Beenden;
 	public static Button Impressum;
 	public final static String ServerURL = "bau.nullcraft.de";
+	public static TextView Latenz;
+	public final static String TestURL="http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/test";
+	public static TextView Testurl;
+	public static Button news;
 	
 	@Override
 	protected void onStart()
@@ -125,18 +117,56 @@ public class MainActivity extends Activity implements OnClickListener
 		Dynmap.setOnClickListener(this);
 		Player = (TextView) findViewById(R.id.playerO);
 		Playermay = (TextView) findViewById(R.id.playerM);
+		Latenz = (TextView) findViewById(R.id.latency_info);
 		Serverversion = (TextView) findViewById(R.id.VersionM);
 		Modt = (TextView) findViewById(R.id.modtM);
 		Beenden = (Button) findViewById(R.id.Beenden);
 		Beenden.setOnClickListener(this);
 		Impressum = (Button) findViewById(R.id.impress);
 		Impressum.setOnClickListener(this);
+		Testurl = (TextView) findViewById(R.id.TestURL2);
+		news=(Button)findViewById(R.id.news);
+		news.setOnClickListener(this);
 		/*
 		 * Vermerk hier Android Timer mit tasklevel setzen
 		 */
+		network_aufgabe();
+	}
+	
+	/**
+	 * Abfrage der jeweiligen JSON Objekte.
+	 */
+	public void network_aufgabe()
+	{
 		Networkthread Network = new Networkthreadimpl();
 		final HashMap JSON = Network.pingserver(ServerURL);
-		// final HashMap JSON = pingServer("bau.nullcraft.de");
+		// /*
+		final HashMap JSOnnot = Network.testServer(TestURL);
+		if(JSOnnot !=null)
+		{
+			final Object emc = JSOnnot.get("emc");
+			String help=emc.toString();
+			final Object gruende_json= JSOnnot.get("Grund");
+			String gruende=gruende_json.toString();
+			if(help.equalsIgnoreCase("Abschalten"))
+			{
+				Testurl.setTextColor(Color.CYAN);
+				Testurl.setText(emc.toString());
+				Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
+				Bundle Transfer = new Bundle();
+				Transfer.putString("grund", gruende);
+				Intent in = new Intent(this, Emc.class);
+				in.putExtras(Transfer);
+				startActivity(in);
+			}
+			else
+			{
+				Testurl.setTextColor(Color.RED);
+				Testurl.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+				Testurl.setText("Developer: Budy93, ©Berlin 2014");
+			}
+		}
+			//*/
 		if(JSON == null || JSON.get("status").equals("false"))
 		{
 			text.setTextColor(Color.RED);
@@ -148,6 +178,7 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else
 		{
+			//latency new
 			text.setTextColor(Color.GREEN);
 			text.setText("Online");
 			final Object PlayerOI = JSON.get("players");
@@ -158,13 +189,13 @@ public class MainActivity extends Activity implements OnClickListener
 			Modt.setText(MODT.toString());
 			final Object ServerV = JSON.get("version");
 			Serverversion.setText(ServerV.toString());
+			final Object Letente = JSON.get("latency");
+			Latenz.setText(Letente.toString());
 		}
 	}
 	
-	/*
-	 * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the
-	 * menu; this adds items to the action bar if it is present.
-	 * getMenuInflater().inflate(R.menu.main, menu); return true; }
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
@@ -173,6 +204,9 @@ public class MainActivity extends Activity implements OnClickListener
 		return true;
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		Intent intent = null;
@@ -186,16 +220,37 @@ public class MainActivity extends Activity implements OnClickListener
 			case R.id.Beendenme:
 				bendendiagloge();
 				return true;
+			case R.id.News:
+				EmcInterface emc = new EmcInterfaceImpl();
+				String[] emc_text = new String[2];
+				emc_text=emc.EMC_abfrage();
+				if (emc_text[1].equals("true"))
+				{
+					Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
+					Bundle Transfer = new Bundle();
+					Transfer.putString("grund", emc_text[0]);
+					Intent in = new Intent(this, Emc.class);
+					in.putExtras(Transfer);
+					startActivity(in);
+					return true;
+				}
+				Intent in = new Intent(MainActivity.this, Newsreaderselect.class);
+				startActivity(in);
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v)
 	{
 		if(v == But)
 		{
+			/*
 			// TODO Auto-generated method stub
 			Networkthread Network = new Networkthreadimpl();
 			final HashMap JSON = Network.pingserver(ServerURL);
@@ -221,7 +276,11 @@ public class MainActivity extends Activity implements OnClickListener
 				Modt.setText(MODT.toString());
 				final Object ServerV = JSON.get("version");
 				Serverversion.setText(ServerV.toString());
+				final Object Letente = JSON.get("latency");
+				Latenz.setText(Letente.toString());
 			}
+			*/
+			network_aufgabe();
 		}
 		else if(v == Vote)
 		{
@@ -245,6 +304,7 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Version)
 		{
+			/*
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 			alertDialog.setTitle("Version");
 			alertDialog.setMessage("Version: Alpha 0.8.0.E2" + "\n"
@@ -258,13 +318,29 @@ public class MainActivity extends Activity implements OnClickListener
 				        }
 			        });
 			alertDialog.show();
+			*/
+			String versiontext="Version: Beta 0.8.1" + "\n"
+			        + "Codename: Vanny" + "\n" + "Autor: Budy93";
+			diaglogesp("Version",versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Alpha 0.8.0.E2" + "\n" + "Codename: Vanny"
+			        "Version: Beta 0.8.1" + "\n" + "Codename: Vanny"
 			                + "\n" + "Autor: Budy93", Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)
 		{
+			EmcInterface emc = new EmcInterfaceImpl();
+			String[] emc_text = new String[2];
+			emc_text=emc.EMC_abfrage();
+			if (emc_text[1].equals("true"))
+			{
+				Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
+				Bundle Transfer = new Bundle();
+				Transfer.putString("grund", emc_text[0]);
+				Intent in = new Intent(this, Emc.class);
+				in.putExtras(Transfer);
+				startActivity(in);
+			}
 			Intent in = new Intent(MainActivity.this, ImpressActivity.class);
 			startActivity(in);
 		}
@@ -272,8 +348,28 @@ public class MainActivity extends Activity implements OnClickListener
 		{
 			bendendiagloge();
 		}
+		else if(v==news)
+		{
+			EmcInterface emc = new EmcInterfaceImpl();
+			String[] emc_text = new String[2];
+			emc_text=emc.EMC_abfrage();
+			if (emc_text[1].equals("true"))
+			{
+				Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
+				Bundle Transfer = new Bundle();
+				Transfer.putString("grund", emc_text[0]);
+				Intent in = new Intent(this, Emc.class);
+				in.putExtras(Transfer);
+				startActivity(in);
+			}
+			Intent in = new Intent(MainActivity.this, Newsreaderselect.class);
+			startActivity(in);
+		}
 	}
 	
+	/**
+	 * Not working Task System
+	 */
 	public static void tasklevel()
 	{
 		Networkthread Network = new Networkthreadimpl();
@@ -302,16 +398,8 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 	}
 	
-	/*
-	 * public static HashMap pingServer(String server) { try { final URL url =
-	 * new URL("http://api.iamphoenix.me/get/?server_ip=" + server); try { final
-	 * BufferedReader reader = new BufferedReader( new
-	 * InputStreamReader(url.openStream())); final String data =
-	 * reader.readLine();
-	 * 
-	 * final Gson gson = new Gson(); return gson.fromJson(data, HashMap.class);
-	 * } catch (final MalformedURLException e) { e.printStackTrace(); } } catch
-	 * (final IOException e) { e.printStackTrace(); } return null; }
+	/**
+	 * Dialoge Interface das die App beendet.
 	 */
 	public void bendendiagloge()
 	{
@@ -350,8 +438,40 @@ public class MainActivity extends Activity implements OnClickListener
 		alertDialog2.show();
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	public void onBackPressed()
 	{
 		bendendiagloge();
+	}
+	
+	/**
+	 * Startet einen einfachen Dialoge zur Wiedergabe von speziellen Nachrichten
+	 * @param Title Titel der Dialogmeldung
+	 * @param grund Text der Dialogemeldung
+	 */
+	public void diaglogesp(String Title, String grund)
+	{
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+		// final AlertDialog alertDialog2 = new AlertDialog.Builder(this)
+		// .create();
+		
+		// Setting Dialog Title
+		alertDialog2.setTitle(Title);
+		
+		// Setting Dialog Message
+		alertDialog2.setMessage(grund);
+		
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("OK",
+		        new DialogInterface.OnClickListener()
+		        {
+			        public void onClick(DialogInterface dialog, int which)
+			        {
+			        	dialog.cancel();
+			        }
+		        });
+		alertDialog2.show();
 	}
 }

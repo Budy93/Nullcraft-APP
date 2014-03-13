@@ -35,14 +35,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * @author A380
+ * @author Daniel Brüggemann
  *
  */
 public interface Networkthread
 {
 	/**
-	 * @param Server
-	 * @return
+	 * Fragt alle Wichtigen Daten des Servers ab.
+	 * @param Server String der Server URL
+	 * @return HashMap mit JSON objekt
 	 */
 	public HashMap pingserver(String Server);
+	/**
+	 * Abfrage von Spezialdaten vom Server
+	 * @param Server String der Server URL
+	 * @return HashMap mit JSON objekt
+	 */
+	public HashMap testServer(String Server);
 }

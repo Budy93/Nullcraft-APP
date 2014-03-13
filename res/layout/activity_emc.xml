@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="412dp"
+        android:layout_weight="1.06" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/emc_text"
+                android:layout_width="match_parent"
+                android:layout_height="414dp"
+                android:text="@string/leer"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/emc_beenden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/beenden" />
+
+</TableLayout>

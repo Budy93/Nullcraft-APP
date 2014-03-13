@@ -37,12 +37,11 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 /**
- * @author A380
+ * @author Daniel Brüggemann
  *
  */
 public class Networkthreadimpl implements Networkthread
 {
-	
 	/* (non-Javadoc)
 	 * @see de.daniel_brueggemann.nullcraftapp.Networkthread#pingserver(java.lang.String)
 	 */
@@ -59,6 +58,41 @@ public class Networkthreadimpl implements Networkthread
 		{
 			final URL url = new URL("http://api.iamphoenix.me/get/?server_ip="
 			        + Server);
+			try
+			{
+				final BufferedReader reader = new BufferedReader(
+				        new InputStreamReader(url.openStream()));
+				final String data = reader.readLine();
+				
+				final Gson gson = new Gson();
+				return gson.fromJson(data, HashMap.class);
+			}
+			catch (final MalformedURLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.daniel_brueggemann.nullcraftapp.Networkthread#testServer(java.lang.String)
+	 */
+	public HashMap testServer(String Server)
+	{
+		if(android.os.Build.VERSION.SDK_INT > 9)
+		{
+			final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+			        .permitNetwork().build();
+			StrictMode.setThreadPolicy(policy);
+		}
+		try
+		{
+			final URL url = new URL(Server);
 			try
 			{
 				final BufferedReader reader = new BufferedReader(
