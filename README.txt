@@ -5,8 +5,21 @@ App für den Server Nullcraft, verändern des Codes ist nicht gestattet, verwend
 des Autors und dieses Projektes im Impressum erlaubt. 
 Autor: Daniel Brüggemann, (Budy93)
 
-Die aktuelle Version ist Alpha v.0.8.0.E2
+Die aktuelle Version ist Beta v.0.8.2
 mit folgenden Changelog:
+
+===Changelog===
+Version: Bata 0.8
+Codename: Vanny
+Changes:
+*Einführung des Optionsmenüs
+*Erleichterung der Navigation
+*Lizenzdatei verarbeitet.
+*Einführung des RSS Readers
+*Einführung von Tech- und Allgemeinenews
+*Neue Putzisicherung für Notfälle
+
+Vorherige Updates:
 
 ===Changelog===
 Version: Alpha 0.8.0.E2
