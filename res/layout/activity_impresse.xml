@@ -8,7 +8,7 @@
         android:id="@+id/emc_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Impressum"
+        android:text="@string/impressum"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 	<ScrollView android:layout_width="wrap_content"
     android:layout_height="wrap_content" android:layout_weight="1">
@@ -30,7 +30,7 @@
 	        android:id="@+id/back"
 	        android:layout_width="wrap_content"
 	        android:layout_height="match_parent"
-	        android:text="Zurück" />
+	        android:text="@string/zuruck" />
 
 	    <Button
 	        android:id="@+id/changelog"

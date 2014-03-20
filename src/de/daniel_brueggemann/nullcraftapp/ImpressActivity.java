@@ -1,16 +1,12 @@
 package de.daniel_brueggemann.nullcraftapp;
 
-import java.util.HashMap;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,18 +40,14 @@ public class ImpressActivity extends Activity implements OnClickListener
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		ActivityRegistry.register(this);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		EmcInterface emc = new EmcInterfaceImpl();
-		String[] emc_text = new String[2];
-		emc_text = emc.EMC_abfrage();
-		if(emc_text[1].equals("true"))
-		{
-			Toast.makeText(this, "Notabschaltung", Toast.LENGTH_LONG).show();
-			Bundle Transfer = new Bundle();
-			Transfer.putString("grund", emc_text[0]);
-			Intent in = new Intent(this, Emc.class);
-			in.putExtras(Transfer);
-			startActivity(in);
-		}
+		/*
+		 * EmcInterface emc = new EmcInterfaceImpl(); String[] emc_text = new
+		 * String[2]; emc_text = emc.EMC_abfrage();
+		 * if(emc_text[1].equals("true")) { Toast.makeText(this,
+		 * "Notabschaltung", Toast.LENGTH_LONG).show(); Bundle Transfer = new
+		 * Bundle(); Transfer.putString("grund", emc_text[0]); Intent in = new
+		 * Intent(this, Emc.class); in.putExtras(Transfer); startActivity(in); }
+		 */
 		change = (Button) findViewById(R.id.changelog);
 		change.setOnClickListener(this);
 		back = (Button) findViewById(R.id.back);
@@ -63,9 +55,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button) findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Beta 0.8.1"
+		String Text = "Version: Beta 0.8.2.2.E1"
 		        + "\n"
-		        + "Codename: Vanny"
+		        + "Codename: Vanny.Rock"
 		        + "\n"
 		        + "Autor: Budy93"
 		        + "\n"
@@ -79,14 +71,14 @@ public class ImpressActivity extends Activity implements OnClickListener
 		        + "\n"
 		        + "12279 Berlin"
 		        + "\n"
+		        + "Email: webmaster@daniel-brueggemann.de"
 		        + "\n"
-		        + "Verantwortlich f\u00FCr den Inhalt nach \u00A7 55 Abs. 2 RStV:\n\nMarc Philipp Stahmer\n\nWischhof 3 24802 Kleinvollstedt.\n\nE-Mail:\n\nowner@nullcraft,de"
+		        + "\n"
+		        + "\n"
+		        + "Verantwortlich f\u00FCr den Inhalt nach \u00A7 55 Abs. 2 RStV:\n\nMarc Philipp Stahmer\n\nWischhof 3 24802 Kleinvollstedt.\n\nE-Mail:\n\nowner@nullcraft.de"
 		        + "\n"
 		        + "\n"
 		        + "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien etc. wird hiermit ausdrücklich widersprochen. Der Betreiber der APP behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen etc., etwa durch Spam-Mails , vor."
-		        + "\n"
-		        + "\n"
-		        + "Email: webmaster@daniel-brueggemann.de"
 		        + "\n"
 		        + "\n"
 		        + "Haftung für Inhalte:"
@@ -112,6 +104,12 @@ public class ImpressActivity extends Activity implements OnClickListener
 		        + "\n"
 		        + "Diese App verwendet die fremd API Software Google-Gson ( https://code.google.com/p/google-gson/ ) von inder123, joel.leitch@gmail.com und limpbizkit die unter der Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0) steht, ein Auszug der Lizenz ist in der .apk enthalten und ist zus\u00E4tzlich mit den Button Lizenz Google-Gson abrufbar."
 		        + "\n"
+		        + "\n"
+		        /*
+		        + "Datenschutz:"
+		        + "\n"
+		        + "Datenverarbeitung durch die APP\n\nDiese APP greift auf externe Server zu, diese erheben und speichern automatisch in ihren Server Log Files Informationen, die Ihr Browser und die App an sie \u00FCbermittelt. Dies sind:\n\n* Browsertyp/ -version\n\n* Verwendetes Betriebssystem\n\n* Hostname/IP-Adresse des zugreifenden Rechners\n\n* Uhrzeit der Serveranfrage. \n\nDiese Daten habe keinen direkten Personenbezug und dienen Internen zwecken, diese Daten werden nicht an Dritte weitergegeben.\n\n"
+		        */
 		        + "\n"
 		        + "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der APP behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor."
 		        + "\n"
@@ -159,20 +157,15 @@ public class ImpressActivity extends Activity implements OnClickListener
 				bendendiagloge();
 				return true;
 			case R.id.item4:
-				EmcInterface emc = new EmcInterfaceImpl();
-				String[] emc_text = new String[2];
-				emc_text = emc.EMC_abfrage();
-				if(emc_text[1].equals("true"))
-				{
-					Toast.makeText(this, "Notabschaltung", Toast.LENGTH_LONG)
-					        .show();
-					Bundle Transfer = new Bundle();
-					Transfer.putString("grund", emc_text[0]);
-					Intent in = new Intent(this, Emc.class);
-					in.putExtras(Transfer);
-					startActivity(in);
-					return true;
-				}
+				/*
+				 * EmcInterface emc = new EmcInterfaceImpl(); String[] emc_text
+				 * = new String[2]; emc_text = emc.EMC_abfrage();
+				 * if(emc_text[1].equals("true")) { Toast.makeText(this,
+				 * "Notabschaltung", Toast.LENGTH_LONG) .show(); Bundle Transfer
+				 * = new Bundle(); Transfer.putString("grund", emc_text[0]);
+				 * Intent in = new Intent(this, Emc.class);
+				 * in.putExtras(Transfer); startActivity(in); return true; }
+				 */
 				Intent in = new Intent(this, Newsreaderselect.class);
 				startActivity(in);
 				return true;
@@ -196,6 +189,8 @@ public class ImpressActivity extends Activity implements OnClickListener
 		else if(v == change)
 		{
 			String changtext;
+			String changetext_Beta_08822E1;
+			String changetext_Beta_082;
 			String changetext_Beta081;
 			String changtext_Alpha071E3;
 			String changtext_Alpha071E2;
@@ -240,7 +235,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 			 * Changelog Button eingeführtVorbereitung für Version Vany mit IRC
 			 * Class.Versionstext erhilt OK Button der fehlte.
 			 */
-			changetext_Beta081 = "Update Beta 0.8\n===Changelog===\nVersion: Bata 0.8\nCodename: Vanny\nChanges:\n*Einf\u00FChrung des Optionsmen\u00FCs\n*Erleichterung der Navigation\n*Lizenzdatei verarbeitet.\n*Einf\u00FChrung des RSS Readers\n*Einf\u00FChrung von Tech- und Allgemeinenews\n*Neue Putzisicherung f\u00FCr Notf\u00E4lle\n\n\n";
+			changetext_Beta_08822E1 = "Update Beta 0.8.2.2.E1\n===Changelog===\nVersion: Beta 0.8.2.2.E1\nCodename: Vanny.Rock\nChanges:\n*Einf\u00FChrung eines Hintergrundbildes.\n*Einf\u00FChrung einer Option zum Reinen ansehen der Votelinks, per Button dann online.\n*Einf\u00FChrung des Men\u00FCpunktes VOTEN.\n*Es gibt nun ein Wartungsinformationssystem\n*Beseitigung der letzten Strickmode Policys, die \u00FCbersehen wurden.\n*Es wurden ein besserer Schutz gegen die Nullpointexception gemacht.\n*Es kann nun gepr\u00FCft werden, ob eine neue Version verf\u00FCgbar ist.\n*Einf\u00FChrung mehrere neben l\u00E4ufiger Threads.\n*Einf\u00FChrung des Men\u00FCpunktes auf Aktualisierungen Pr\u00FCfen in Mainmen\u00FC.\n!Fehlerbehebung bei der MODT und Version \u00FCberlagerten.\n!Latenz wird bei offline nun 0\n\n";
+			changetext_Beta_082 = "HOTFIX Beta 0.8.2\n===Changelog===\nVersion: Beta 0.8\nCodename: Vanny\nChanges:\n! Fehlerbehebung die zur Nullpoitnexception f\u00FChrte.\n! Beschriftungsfehler behoben\n\n";
+			changetext_Beta081 = "Update Beta 0.8.1\n===Changelog===\nVersion: Beta 0.8.1\nCodename: Vanny\nChanges:\n*Einf\u00FChrung des Optionsmen\u00FCs\n*Erleichterung der Navigation\n*Lizenzdatei verarbeitet.\n*Einf\u00FChrung des RSS Readers\n*Einf\u00FChrung von Tech- und Allgemeinenews\n*Neue Putzisicherung f\u00FCr Notf\u00E4lle\n\n\n";
 			changtext_Alpha071E3 = "Version: Alpha 0.7.1.E3"
 			        + "\n"
 			        + "* Codename: Krähe.Vanny"
@@ -316,7 +313,8 @@ public class ImpressActivity extends Activity implements OnClickListener
 			        + "\n"
 			        + "* MODT Version von Nullcraft Link zur Dynmap Autolink zur Voteseite"
 			        + "\n" + "\n" + "----------------" + "\n" + "\n";
-			changtext = changetext_Beta081 + changtext_Alpha071E3
+			changtext = changetext_Beta_08822E1 + changetext_Beta_082
+			        + changetext_Beta081 + changtext_Alpha071E3
 			        + changtext_Alpha071E2 + changtext_Alpha071E1
 			        + changtext_Alpha07 + changtext_Alpha06 + changtext_Alpha05;
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
