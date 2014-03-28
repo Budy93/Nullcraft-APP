@@ -31,6 +31,7 @@ public class Dynmap extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dynmap);
 		ActivityRegistry.register(this);
+		/*
 		EmcInterface emc = new EmcInterfaceImpl();
 		String[] emc_text = new String[2];
 		emc_text=emc.EMC_abfrage();
@@ -43,6 +44,7 @@ public class Dynmap extends Activity
 			in.putExtras(Transfer);
 			startActivity(in);
 		}
+		*/
 		browser = (WebView) findViewById(R.id.mapview);
 		WebSettings webSettings = browser.getSettings();
 		webSettings.setJavaScriptEnabled(true);
@@ -73,6 +75,7 @@ public class Dynmap extends Activity
 				startActivity(intent);
 				return true;
 			case R.id.News:
+				/*
 				EmcInterface emc = new EmcInterfaceImpl();
 				String[] emc_text = new String[2];
 				emc_text=emc.EMC_abfrage();
@@ -85,6 +88,7 @@ public class Dynmap extends Activity
 					in.putExtras(Transfer);
 					startActivity(in);
 				}
+				*/
 				Intent in = new Intent(this, Newsreaderselect.class);
 				startActivity(in);
 				return true;

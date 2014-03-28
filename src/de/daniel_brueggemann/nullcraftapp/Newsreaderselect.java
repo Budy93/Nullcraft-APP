@@ -82,6 +82,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 		Technews.setOnClickListener(this);
 		Aenderungsnews.setOnClickListener(this);
 		History.setOnClickListener(this);
+		/*
 		EmcInterface emc = new EmcInterfaceImpl();
 		String[] emc_text = new String[2];
 		emc_text = emc.EMC_abfrage();
@@ -94,6 +95,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 			in.putExtras(Transfer);
 			startActivity(in);
 		}
+		*/
 	}
 	
 	@Override
@@ -101,6 +103,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 	{
 		if(v == Technews)
 		{
+			/*
 			EmcInterface emc = new EmcInterfaceImpl();
 			String[] emc_text = new String[2];
 			emc_text = emc.EMC_abfrage();
@@ -114,6 +117,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 				in.putExtras(Transfer);
 				startActivity(in);
 			}
+			*/
 			Bundle Transfer = new Bundle();
 			Transfer.putString("url", techurl);
 			Intent in = new Intent(this, RssReaderActivity.class);
@@ -122,6 +126,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 		}
 		else if(v == Aenderungsnews)
 		{
+			/*
 			EmcInterface emc = new EmcInterfaceImpl();
 			String[] emc_text = new String[2];
 			emc_text = emc.EMC_abfrage();
@@ -135,6 +140,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 				in.putExtras(Transfer);
 				startActivity(in);
 			}
+			*/
 			Bundle Transfer = new Bundle();
 			Transfer.putString("url", ankuendurl);
 			Intent in = new Intent(this, RssReaderActivity.class);
@@ -143,6 +149,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 		}
 		else if(v == History)
 		{
+			/*
 			EmcInterface emc = new EmcInterfaceImpl();
 			String[] emc_text = new String[2];
 			emc_text = emc.EMC_abfrage();
@@ -156,6 +163,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 				in.putExtras(Transfer);
 				startActivity(in);
 			}
+			*/
 			Bundle Transfer = new Bundle();
 			Transfer.putString("url", historyurl);
 			Intent in = new Intent(this, MainActivity.class);

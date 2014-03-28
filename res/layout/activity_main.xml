@@ -7,8 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_affe"
     tools:context=".MainActivity" >
-    <!-- android:background="@drawable/affe" -->
+    <!-- android:background="@drawable/bg_affe" -->
 
     <TextView
         android:id="@+id/emc_text"
@@ -37,14 +38,6 @@
         android:text="@string/Splayermax" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:text="@string/MODT" />
-
-    <TextView
         android:id="@+id/impresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/impresse"
         android:layout_centerHorizontal="true"
-        android:text="-" />
+        android:text="@string/leer" />
 
     <TextView
         android:id="@+id/playerM"
@@ -66,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/playerO"
         android:layout_below="@+id/playerO"
-        android:text="-" />
+        android:text="@string/leer" />
 
     <TextView
         android:id="@+id/modtM"
@@ -75,7 +68,7 @@
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignLeft="@+id/playerO"
-        android:text="Offline Platzhalter" />
+        android:text="@string/offline" />
 
     <TextView
         android:id="@+id/VersionM"
@@ -84,25 +77,9 @@
         android:layout_alignBaseline="@+id/VersionText"
         android:layout_alignBottom="@+id/VersionText"
         android:layout_alignLeft="@+id/playerM"
-        android:text="Offline Platzhalter" />
+        android:text="@string/offline" />
 
-    <TextView
-        android:id="@+id/VersionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/modtM"
-        android:layout_marginTop="16dp"
-        android:text="@string/Version" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/impress"
-        android:layout_gravity="center_vertical|center_horizontal|fill_horizontal|center"
-        android:layout_toLeftOf="@+id/emc_text"
-        android:gravity="center_vertical|center_horizontal|fill_horizontal|center" >
-    </LinearLayout>
+    
 
     <Button
         android:id="@+id/Dyn"
@@ -111,7 +88,7 @@
         android:layout_above="@+id/version"
         android:layout_alignTop="@+id/Votel"
         android:layout_toRightOf="@+id/back"
-        android:text="Dynmap" />
+        android:text="@string/Dynmap" />
 
     <Button
         android:id="@+id/version"
@@ -120,7 +97,7 @@
         android:layout_alignRight="@+id/Dyn"
         android:layout_alignTop="@+id/Beenden"
         android:layout_toRightOf="@+id/Votel"
-        android:text="Version" />
+        android:text="@string/Version" />
 
     <Button
         android:id="@+id/Votel"
@@ -128,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/Beenden"
         android:layout_centerHorizontal="true"
-        android:text="Votelinks" />
+        android:text="@string/Voten" />
 
     <Button
         android:id="@+id/back"
@@ -137,7 +114,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="31dp"
-        android:text="Neuladen"
+        android:text="@string/neuladen"
         android:textStyle="bold" />
 
     <Button
@@ -145,8 +122,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Beenden"
-        android:layout_toLeftOf="@+id/Votel"
-        android:text="Kontakt" />
+        android:layout_toLeftOf="@+id/back"
+        android:text="@string/Kontack" />
 
     <Button
         android:id="@+id/Beenden"
@@ -156,15 +133,7 @@
         android:layout_alignBaseline="@+id/back"
         android:layout_alignBottom="@+id/back"
         android:layout_alignLeft="@+id/impress"
-        android:text="X" />
-
-    <TextView
-        android:id="@+id/latency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/VersionText"
-        android:layout_below="@+id/VersionText"
-        android:text="@string/latency" />
+        android:text="@string/x" />
 
     <TextView
         android:id="@+id/latency_info"
@@ -190,7 +159,59 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Beenden"
         android:layout_alignParentBottom="true"
-        android:text="@string/test"
+        android:text="@string/copyright"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/wartungen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/latency_info"
+        android:layout_below="@+id/latency_info"
+        android:text="@string/offline" />
+
+    <TextView
+        android:id="@+id/VersionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:text="@string/Version" />
+
+    <TextView
+        android:id="@+id/wartungentxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/wartungen"
+        android:layout_alignBottom="@+id/wartungen"
+        android:layout_alignLeft="@+id/latency"
+        android:text="@string/wartungstext" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/VersionText"
+        android:layout_below="@+id/VersionText"
+        android:text="@string/MODT" />
+
+    <TextView
+        android:id="@+id/latency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="49dp"
+        android:text="@string/latency" />
+
+    <Button
+        android:id="@+id/updatebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/news"
+        android:layout_alignLeft="@+id/impress"
+        android:layout_alignTop="@+id/news"
+        android:layout_toLeftOf="@+id/back"
+        android:text="@string/update" />
 
 </RelativeLayout>

@@ -24,5 +24,16 @@
     <string name="MODT">Modt</string>
     <string name="Version">Version</string>
     <string name="app_emc">Nullcraft App Notaus</string>
-
+    <string name="wartungstext">Geplante\nWartungen:</string>
+    <string name="offline">Platzhalter</string>
+    <string name="copyright">Copyright Platzhalter</string>
+    <string name="app_discription">Diese App zeigt was auf Nullcraft aktuell alles los ist.</string>
+    <string name="neuladen">Neuladen</string>
+    <string name="x">X</string>
+    <string name="Dynmap">Dynmap</string>
+    <string name="versuonen">Version</string>
+    <string name="Voten">Votelinks</string>
+    <string name="Kontack">Kontakt</string>
+    <string name="update">Update</string>
+	<string name="update_p">Auf Aktualisierungen Prüfen</string>
 </resources>

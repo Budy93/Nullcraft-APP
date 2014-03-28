@@ -10,6 +10,8 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import de.daniel_brueggemann.nullcraftapp.rss.RSSItem;
+import de.daniel_brueggemann.nullcraftapp.rss.RSSParser;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -60,6 +62,7 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 	{
 		if(v == test)
 		{
+			/*
 			EmcInterface emc = new EmcInterfaceImpl();
 			String[] emc_text = new String[2];
 			emc_text=emc.EMC_abfrage();
@@ -72,6 +75,7 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 				in.putExtras(Transfer);
 				startActivity(in);
 			}
+			*/
 			Intent in = new Intent(this, Newsreaderselect.class);
 			startActivity(in);
 		}
