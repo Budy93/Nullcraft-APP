@@ -8,6 +8,33 @@ Autor: Daniel Brüggemann, (Budy93)
 Die aktuelle Version ist Beta v.0.8.2
 mit folgenden Changelog:
 
+Update Beta 0.8.2.2.E2(822712)
+===Changelog===
+Version: Beta 0.8.2.2.E2
+Codename: Rock
+Changes:
+!Fehlerbehebung die bei Fehlenen Netz zum Absturtz der App führte
+*Vorbereitungen für neue Schnittstellen
+
+Vorherige Updates:
+
+Update Beta 0.8.2.2.E1
+===Changelog===
+Version: Beta 0.8.2.2.E1
+Codename: Vanny.Rock
+Changes:
+*Einführung eines Hintergrundbildes.
+*Einführung einer Option zum Reinen ansehen der Votelinks, per Button dann online.
+*Einführung des Menüpunktes VOTEN.
+*Es gibt nun ein Wartungsinformationssystem
+*Beseitigung der letzten Strickmode Policys, die übersehen wurden.
+*Es wurden ein besserer Schutz gegen die Nullpointexception gemacht.
+*Es kann nun geprüft werden, ob eine neue Version verfügbar ist.
+*Einführung mehrere neben läufiger Threads.
+*Einführung des Menüpunktes auf Aktualisierungen Prüfen in Mainmenü.
+!Fehlerbehebung bei der MODT und Version überlagerten.
+!Latenz wird bei offline nun 0
+
 ===Changelog===
 Version: Bata 0.8
 Codename: Vanny
@@ -18,8 +45,6 @@ Changes:
 *Einführung des RSS Readers
 *Einführung von Tech- und Allgemeinenews
 *Neue Putzisicherung für Notfälle
-
-Vorherige Updates:
 
 ===Changelog===
 Version: Alpha 0.8.0.E2
