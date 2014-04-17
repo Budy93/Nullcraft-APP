@@ -18,17 +18,17 @@ public class Readers implements Runnable
 	public void run()
 	{
 		Networkthread Network = new Networkthreadimpl();
-		Server=Network.getServerdaten();	
-		URL url=null;
-        try
-        {
-	        url = new URL(Server);
-        }
-        catch (MalformedURLException e1)
-        {
-	        // TODO Auto-generated catch block
-	        e1.printStackTrace();
-        }
+		Server = Network.getServerdaten();
+		URL url = null;
+		try
+		{
+			url = new URL(Server);
+		}
+		catch (MalformedURLException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try
 		{
 			reader = new BufferedReader(new InputStreamReader(url.openStream()));

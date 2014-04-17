@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
+ * Impressum der Nullapp
  * @author Daniel Brüggemann
  * @version Alpha 0.8
- *
  */
 public class ImpressActivity extends Activity implements OnClickListener
 {
@@ -55,9 +55,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button) findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Beta 0.8.2.2.E1"
+		String Text = "Version: Beta 0.8.2.2.E2"
 		        + "\n"
-		        + "Codename: Vanny.Rock"
+		        + "Codename: Rock"
 		        + "\n"
 		        + "Autor: Budy93"
 		        + "\n"
@@ -106,10 +106,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		        + "\n"
 		        + "\n"
 		        /*
-		        + "Datenschutz:"
-		        + "\n"
-		        + "Datenverarbeitung durch die APP\n\nDiese APP greift auf externe Server zu, diese erheben und speichern automatisch in ihren Server Log Files Informationen, die Ihr Browser und die App an sie \u00FCbermittelt. Dies sind:\n\n* Browsertyp/ -version\n\n* Verwendetes Betriebssystem\n\n* Hostname/IP-Adresse des zugreifenden Rechners\n\n* Uhrzeit der Serveranfrage. \n\nDiese Daten habe keinen direkten Personenbezug und dienen Internen zwecken, diese Daten werden nicht an Dritte weitergegeben.\n\n"
-		        */
+				 * + "Datenschutz:" + "\n" +
+				 * "Datenverarbeitung durch die APP\n\nDiese APP greift auf externe Server zu, diese erheben und speichern automatisch in ihren Server Log Files Informationen, die Ihr Browser und die App an sie \u00FCbermittelt. Dies sind:\n\n* Browsertyp/ -version\n\n* Verwendetes Betriebssystem\n\n* Hostname/IP-Adresse des zugreifenden Rechners\n\n* Uhrzeit der Serveranfrage. \n\nDiese Daten habe keinen direkten Personenbezug und dienen Internen zwecken, diese Daten werden nicht an Dritte weitergegeben.\n\n"
+				 */
 		        + "\n"
 		        + "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der APP behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor."
 		        + "\n"
@@ -144,6 +143,11 @@ public class ImpressActivity extends Activity implements OnClickListener
 		return true;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		Intent intent = null;
@@ -174,6 +178,11 @@ public class ImpressActivity extends Activity implements OnClickListener
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
 	@Override
 	public void onClick(View v)
 	{
@@ -189,6 +198,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		else if(v == change)
 		{
 			String changtext;
+			String changetext_Beta_0822E2;
 			String changetext_Beta_08822E1;
 			String changetext_Beta_082;
 			String changetext_Beta081;
@@ -198,43 +208,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 			String changtext_Alpha07;
 			String changtext_Alpha06;
 			String changtext_Alpha05;
-			/*
-			 * ===Changelog=== Alpha 0.5 Codename: Putzi Serverstatus Aktuelle
-			 * Userzahl Maximaler Userzahl MODT Version von Nullcraft Link zur
-			 * Dynmap Autolink zur Voteseite
-			 * 
-			 * ===Changelog=== Version: Alpha 0.6 Codename: Saui Changelog:
-			 * Beenden Option Integriert.Background ArbeitenFarbige
-			 * Serverstatusnachrichten Rotieren der App wurde Blockiert !Motd
-			 * Text wurde gefixt
-			 * 
-			 * ===Changelog=== Version: Alpha 0.7 Codename: Krähe
-			 * 
-			 * Changelog: Fehlerbehebung bei Offline Status einiger TextViewer.
-			 * Putzi entfernen aus SourceBessere Putzisicherung einbauen.
-			 * Entfernung der StrictMode.ThreaspolicyActivity Registrierung
-			 * überarbeiten um gemeldete Fehler beim Beenden der App - zu
-			 * verhindern
-			 * 
-			 * ===Changelog=== Version: Alpha 0.7.1.E1 Codename: Krähe
-			 * 
-			 * Changelog: Serverstatus farbig je nach versionActivtyregister
-			 * EingeführtZurückbutton beendet nun die AppNetwork Interface
-			 * eingefügtImpressum eingefüghtImpressum Activity eingefügt
-			 * Vorbereitung zur Integrierung der Dynmap ab API-Level: 13
-			 * 
-			 * ===Changelog=== Version: Alpha 0.7.1.E2 Codename: Krähe
-			 * 
-			 * Changelog: Dynmap eingefügtVerbesserung der Performenz für
-			 * Android-Api<13Zurückbutton beendet nun die AppNeues Layout,
-			 * eingeführt.
-			 * 
-			 * ===Changelog=== Version: Alpha 0.7.1.E3 Codename: Krähe.Vanny
-			 * 
-			 * Changelog: Dynmap fehler behoben.Fehler im Layout behoben.
-			 * Changelog Button eingeführtVorbereitung für Version Vany mit IRC
-			 * Class.Versionstext erhilt OK Button der fehlte.
-			 */
+			changetext_Beta_0822E2 = "Update Beta 0.8.2.2.E2\n===Changelog===\nVersion: Beta 0.8.2.2.E2\nCodename: Rock\nChanges:\n!Fehlerbehebung die bei Fehlenen Netz zum Absturtz der App f\u00FChrte\n*Vorbereitungen f\u00FCr neue Schnittstellen\n\n";
 			changetext_Beta_08822E1 = "Update Beta 0.8.2.2.E1\n===Changelog===\nVersion: Beta 0.8.2.2.E1\nCodename: Vanny.Rock\nChanges:\n*Einf\u00FChrung eines Hintergrundbildes.\n*Einf\u00FChrung einer Option zum Reinen ansehen der Votelinks, per Button dann online.\n*Einf\u00FChrung des Men\u00FCpunktes VOTEN.\n*Es gibt nun ein Wartungsinformationssystem\n*Beseitigung der letzten Strickmode Policys, die \u00FCbersehen wurden.\n*Es wurden ein besserer Schutz gegen die Nullpointexception gemacht.\n*Es kann nun gepr\u00FCft werden, ob eine neue Version verf\u00FCgbar ist.\n*Einf\u00FChrung mehrere neben l\u00E4ufiger Threads.\n*Einf\u00FChrung des Men\u00FCpunktes auf Aktualisierungen Pr\u00FCfen in Mainmen\u00FC.\n!Fehlerbehebung bei der MODT und Version \u00FCberlagerten.\n!Latenz wird bei offline nun 0\n\n";
 			changetext_Beta_082 = "HOTFIX Beta 0.8.2\n===Changelog===\nVersion: Beta 0.8\nCodename: Vanny\nChanges:\n! Fehlerbehebung die zur Nullpoitnexception f\u00FChrte.\n! Beschriftungsfehler behoben\n\n";
 			changetext_Beta081 = "Update Beta 0.8.1\n===Changelog===\nVersion: Beta 0.8.1\nCodename: Vanny\nChanges:\n*Einf\u00FChrung des Optionsmen\u00FCs\n*Erleichterung der Navigation\n*Lizenzdatei verarbeitet.\n*Einf\u00FChrung des RSS Readers\n*Einf\u00FChrung von Tech- und Allgemeinenews\n*Neue Putzisicherung f\u00FCr Notf\u00E4lle\n\n\n";
@@ -313,10 +287,11 @@ public class ImpressActivity extends Activity implements OnClickListener
 			        + "\n"
 			        + "* MODT Version von Nullcraft Link zur Dynmap Autolink zur Voteseite"
 			        + "\n" + "\n" + "----------------" + "\n" + "\n";
-			changtext = changetext_Beta_08822E1 + changetext_Beta_082
-			        + changetext_Beta081 + changtext_Alpha071E3
-			        + changtext_Alpha071E2 + changtext_Alpha071E1
-			        + changtext_Alpha07 + changtext_Alpha06 + changtext_Alpha05;
+			changtext = changetext_Beta_0822E2 + changetext_Beta_08822E1
+			        + changetext_Beta_082 + changetext_Beta081
+			        + changtext_Alpha071E3 + changtext_Alpha071E2
+			        + changtext_Alpha071E1 + changtext_Alpha07
+			        + changtext_Alpha06 + changtext_Alpha05;
 			AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 			alertDialog.setTitle("Version");
 			alertDialog.setMessage(changtext);
@@ -347,6 +322,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		 */
 	}
 	
+	/**
+	 * Alertdialoge, zur beendung der APP.
+	 */
 	public void bendendiagloge()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
@@ -384,6 +362,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		alertDialog2.show();
 	}
 	
+	/**
+	 * Ausgabe der Apache 2.0 Lizenz von Google JSON
+	 */
 	public void credit()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
@@ -421,6 +402,11 @@ public class ImpressActivity extends Activity implements OnClickListener
 		alertDialog2.show();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	public void onBackPressed()
 	{
 		

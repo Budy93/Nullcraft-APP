@@ -68,7 +68,7 @@
         android:layout_alignBaseline="@+id/textView5"
         android:layout_alignBottom="@+id/textView5"
         android:layout_alignLeft="@+id/playerO"
-        android:text="@string/offline" />
+        android:text="@string/Keine_Netzwerk" />
 
     <TextView
         android:id="@+id/VersionM"
@@ -77,7 +77,7 @@
         android:layout_alignBaseline="@+id/VersionText"
         android:layout_alignBottom="@+id/VersionText"
         android:layout_alignLeft="@+id/playerM"
-        android:text="@string/offline" />
+        android:text="@string/Keine_Netzwerk" />
 
     
 
@@ -154,7 +154,7 @@
         android:text="@string/news" />
 
     <TextView
-        android:id="@+id/TestURL2"
+        android:id="@+id/CPRights"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Beenden"
@@ -168,7 +168,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/latency_info"
         android:layout_below="@+id/latency_info"
-        android:text="@string/offline" />
+        android:text="@string/Keine_Netzwerk" />
 
     <TextView
         android:id="@+id/VersionText"

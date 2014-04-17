@@ -8,6 +8,7 @@ import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer;
 import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer_impl;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthread;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthreadimpl;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -30,9 +31,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
+ * Nullapp für den Server Nullcraft
  * @author Daniel Brüggemann
  * @version Beta 0.8.1
- *
  */
 // Zwischenablage: btn.setBackgroundResource(R.drawable.soundoff);
 public class MainActivity extends Activity implements OnClickListener
@@ -52,7 +53,7 @@ public class MainActivity extends Activity implements OnClickListener
 	public final static String ServerURL = "bau.nullcraft.de";
 	public static TextView Latenz;
 	public final static String wartungsURL = "http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/wartung/Wartung";
-	public static TextView Testurl;
+	public static TextView CPRightstext;
 	public static Button News;
 	public static TextView wartungnews;
 	public static ProgressDialog progress = null;
@@ -61,12 +62,18 @@ public class MainActivity extends Activity implements OnClickListener
 	public final String Votelinksmsg = "http://craftlist.de/vote/3" + "\n"
 	        + "\n" + "http://www.minecraft-serverlist.net/vote/12186" + "\n"
 	        + "\n" + "http://minecraft-server.eu/vote/index/80600";
-	private static long timestart=0;
-	private static long speicher=0;
-	private static long timeend=0;
+	private static long timestart = 0;
+	private static long speicher = 0;
+	private static long timeend = 0;
 	private static float timebenoetigt;
 	public static final long sec = 1000000000;
+	public final int versionsnr=822712;
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onStart()
+	 */
 	@Override
 	protected void onStart()
 	{
@@ -74,6 +81,11 @@ public class MainActivity extends Activity implements OnClickListener
 		// The activity is about to become visible.
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onResume()
+	 */
 	@Override
 	protected void onResume()
 	{
@@ -81,6 +93,11 @@ public class MainActivity extends Activity implements OnClickListener
 		// The activity has become visible (it is now "resumed").
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	protected void onPause()
 	{
@@ -89,6 +106,11 @@ public class MainActivity extends Activity implements OnClickListener
 		// "paused").
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onStop()
+	 */
 	@Override
 	protected void onStop()
 	{
@@ -96,6 +118,11 @@ public class MainActivity extends Activity implements OnClickListener
 		// The activity is no longer visible (it is now "stopped")
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onDestroy()
+	 */
 	@Override
 	protected void onDestroy()
 	{
@@ -132,7 +159,8 @@ public class MainActivity extends Activity implements OnClickListener
 		Beenden.setOnClickListener(this);
 		Impressum = (Button) findViewById(R.id.impress);
 		Impressum.setOnClickListener(this);
-		Testurl = (TextView) findViewById(R.id.TestURL2);
+		CPRightstext = (TextView) findViewById(R.id.CPRights);
+		CPRightstext.setTextColor(Color.GREEN);
 		News = (Button) findViewById(R.id.news);
 		News.setOnClickListener(this);
 		wartungnews = (TextView) findViewById(R.id.wartungen);
@@ -140,8 +168,9 @@ public class MainActivity extends Activity implements OnClickListener
 		wartungnews.setText("");
 		updatecheck = (Button) findViewById(R.id.updatebtn);
 		updatecheck.setOnClickListener(this);
-		speicher=0;
-		timeend=0;
+		speicher = 0;
+		timeend = 0;
+		
 		/*
 		 * Vermerk hier Android Timer mit tasklevel setzen
 		 */
@@ -152,38 +181,42 @@ public class MainActivity extends Activity implements OnClickListener
 	}
 	
 	/**
-	 * Abfrage der jeweiligen JSON Objekte.
+	 * Führt die entsprechenden Abfragen im Netzwerk in einen anderen Thread durch.
 	 */
 	public void network_aufgabe()
 	{
-		boolean ok=false;
-		timestart=System.nanoTime();
-		if(speicher==0 & timeend==0)
+		boolean ok = false;
+		ok=sicherung(5);
+		/*
+		timestart = System.nanoTime();
+		if(speicher == 0 & timeend == 0)
 		{
-			ok=true;
-			timeend=timestart;
+			ok = true;
+			timeend = timestart;
 		}
-		else if(timeend!=0)
+		else if(timeend != 0)
 		{
-			speicher=timestart-timeend;
-			speicher=speicher/sec;
-			if(speicher<5)
+			speicher = timestart - timeend;
+			speicher = speicher / sec;
+			if(speicher < 5)
 			{
-				//diaglogesp("PFFS-SYSTEM","Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke");
+				// diaglogesp("PFFS-SYSTEM","Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke");
 				
 				Toast.makeText(
 				        this,
-				        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke", Toast.LENGTH_SHORT).show();
+				        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke",
+				        Toast.LENGTH_SHORT).show();
 				
-				ok=false;
+				ok = false;
 			}
 			else
 			{
-				timeend=timestart;
-				ok=true;
+				timeend = timestart;
+				ok = true;
 			}
 		}
-		if(ok==true)
+		*/
+		if(ok == true)
 		{
 			Runnable r = new Runnable()
 			{
@@ -207,36 +240,42 @@ public class MainActivity extends Activity implements OnClickListener
 								 * Toast.LENGTH_LONG) .show();
 								 */
 								Bundle Transfer = new Bundle();
-								Testurl.setTextColor(Color.CYAN);
-								Testurl.setText(emc.toString());
+								CPRightstext.setTextColor(Color.CYAN);
+								CPRightstext.setText(emc.toString());
 								Transfer.putString("grund", emc_text[0]);
-								Intent in = new Intent(MainActivity.this, Emc.class);
+								Intent in = new Intent(MainActivity.this,
+								        Emc.class);
 								in.putExtras(Transfer);
 								startActivity(in);
 							}
 							else
 							{
-								Testurl.setTextColor(Color.GREEN);
-								Testurl.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-								Testurl.setText("Developer: Budy93, ©Berlin 2014");
+								CPRightstext.setTextColor(Color.GREEN);
+								CPRightstext.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+								        10);
+								CPRightstext.setText("Developer: Budy93, ©Berlin 2014");
 							}
-							// final HashMap JSOnnot = Network.testServer(TestURL);
+							// final HashMap JSOnnot =
+							// Network.testServer(TestURL);
 							/*
 							 * if(JSOnnot !=null) { final Object emc =
-							 * JSOnnot.get("emc"); String help=emc.toString(); final
-							 * Object gruende_json= JSOnnot.get("Grund"); String
-							 * gruende=gruende_json.toString();
+							 * JSOnnot.get("emc"); String help=emc.toString();
+							 * final Object gruende_json= JSOnnot.get("Grund");
+							 * String gruende=gruende_json.toString();
 							 * if(help.equalsIgnoreCase("Abschalten")) {
 							 * Testurl.setTextColor(Color.CYAN);
-							 * Testurl.setText(emc.toString()); Toast.makeText(this,
-							 * "Notabschaltung",Toast.LENGTH_LONG).show(); Bundle
-							 * Transfer = new Bundle(); Transfer.putString("grund",
-							 * gruende); Intent in = new Intent(this, Emc.class);
-							 * in.putExtras(Transfer); startActivity(in); } else {
-							 * Testurl.setTextColor(Color.GREEN);
-							 * Testurl.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-							 * Testurl.setText("Developer: Budy93, ©Berlin 2014"); }
-							 * }
+							 * Testurl.setText(emc.toString());
+							 * Toast.makeText(this,
+							 * "Notabschaltung",Toast.LENGTH_LONG).show();
+							 * Bundle Transfer = new Bundle();
+							 * Transfer.putString("grund", gruende); Intent in =
+							 * new Intent(this, Emc.class);
+							 * in.putExtras(Transfer); startActivity(in); } else
+							 * { Testurl.setTextColor(Color.GREEN);
+							 * Testurl.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+							 * 10);
+							 * Testurl.setText("Developer: Budy93, ©Berlin 2014"
+							 * ); } }
 							 */
 							GJSON_pruefer pr = new GJSON_pruefer_impl();
 							boolean statustest = false;
@@ -321,8 +360,8 @@ public class MainActivity extends Activity implements OnClickListener
 		switch (item.getItemId())
 		{
 			case R.id.test:
-				speicher=0;
-				timeend=0;
+				speicher = 0;
+				timeend = 0;
 				intent = new Intent(this, ImpressActivity.class);
 				startActivity(intent);
 				// ActivityRegistry.finishthis();
@@ -340,8 +379,8 @@ public class MainActivity extends Activity implements OnClickListener
 				 * Intent in = new Intent(this, Emc.class);
 				 * in.putExtras(Transfer); startActivity(in); return true; }
 				 */
-				speicher=0;
-				timeend=0;
+				speicher = 0;
+				timeend = 0;
 				network_aufgabe();
 				Intent in = new Intent(MainActivity.this,
 				        Newsreaderselect.class);
@@ -351,31 +390,35 @@ public class MainActivity extends Activity implements OnClickListener
 				dialoge_vote();
 				return true;
 			case R.id.Updat:
-				boolean ok=false;
-				timestart=System.nanoTime();
-				if(speicher==0 & timeend==0)
+				boolean ok = false;
+				ok=sicherung(5);
+				/*
+				timestart = System.nanoTime();
+				if(speicher == 0 & timeend == 0)
 				{
-					ok=true;
-					timeend=timestart;
+					ok = true;
+					timeend = timestart;
 				}
-				else if(timeend!=0)
+				else if(timeend != 0)
 				{
-					speicher=timestart-timeend;
-					speicher=speicher/sec;
-					if(speicher<5)
+					speicher = timestart - timeend;
+					speicher = speicher / sec;
+					if(speicher < 5)
 					{
 						Toast.makeText(
 						        this,
-						        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden", Toast.LENGTH_LONG).show();
-						ok=false;
+						        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden",
+						        Toast.LENGTH_LONG).show();
+						ok = false;
 					}
 					else
 					{
-						timeend=timestart;
-						ok=true;
+						timeend = timestart;
+						ok = true;
 					}
 				}
-				if(ok==true)
+				*/
+				if(ok == true)
 				{
 					Runnable r = new Runnable()
 					{
@@ -389,7 +432,7 @@ public class MainActivity extends Activity implements OnClickListener
 							{
 								public void run()
 								{
-									if(v_test == 822711)
+									if(v_test == versionsnr)
 									{
 										// String a=""+v_test;
 										diaglogesp("Update nicht verfügbar",
@@ -463,8 +506,8 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Dynmap)
 		{
-			speicher=0;
-			timeend=0;
+			speicher = 0;
+			timeend = 0;
 			if(android.os.Build.VERSION.SDK_INT > 14)
 			{
 				Intent in = new Intent(MainActivity.this, Dynmap.class);
@@ -489,12 +532,13 @@ public class MainActivity extends Activity implements OnClickListener
 			 * onClick(DialogInterface dialog, int which) { dialog.cancel(); }
 			 * }); alertDialog.show();
 			 */
-			String versiontext = "Version: Beta 0.8.2.2.E1" + "\n"
-			        + "Codename: Vanny.Rock" + "\n" + "Autor: Budy93"+"\n"+"E-mail: dev@daniel-brueggemann.de";
+			String versiontext = "Version: Beta 0.8.2.2.E2" + "\n"
+			        + "Codename: Rock" + "\n" + "Autor: Budy93" + "\n"
+			        + "E-mail: dev@daniel-brueggemann.de";
 			diaglogesp("Version", versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Beta 0.8.2.2.E1" + "\n" + "Codename: Vanny.Rock"
+			        "Version: Beta 0.8.2.2.E2" + "\n" + "Codename: Rock"
 			                + "\n" + "Autor: Budy93", Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)
@@ -508,8 +552,8 @@ public class MainActivity extends Activity implements OnClickListener
 			 * new Intent(this, Emc.class); in.putExtras(Transfer);
 			 * startActivity(in); }
 			 */
-			speicher=0;
-			timeend=0;
+			speicher = 0;
+			timeend = 0;
 			network_aufgabe();
 			Intent in = new Intent(MainActivity.this, ImpressActivity.class);
 			startActivity(in);
@@ -529,46 +573,45 @@ public class MainActivity extends Activity implements OnClickListener
 			 * new Intent(this, Emc.class); in.putExtras(Transfer);
 			 * startActivity(in); }
 			 */
-			speicher=0;
-			timeend=0;
+			speicher = 0;
+			timeend = 0;
 			network_aufgabe();
 			Intent in = new Intent(MainActivity.this, Newsreaderselect.class);
 			startActivity(in);
 		}
 		else if(v == updatecheck)
 		{
-			boolean ok=false;
-			timestart=System.nanoTime();
-			if(speicher==0 & timeend==0)
+			boolean ok = false;
+			ok=sicherung(5);
+			/*
+			timestart = System.nanoTime();
+			if(speicher == 0 & timeend == 0)
 			{
-				ok=true;
-				timeend=timestart;
+				ok = true;
+				timeend = timestart;
 			}
-			else if(timeend!=0)
+			else if(timeend != 0)
 			{
-				speicher=timestart-timeend;
-				speicher=speicher/sec;
-				if(speicher<5)
+				speicher = timestart - timeend;
+				speicher = speicher / sec;
+				if(speicher < 5)
 				{
 					Toast.makeText(
 					        this,
-					        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke", Toast.LENGTH_SHORT).show();
-					//diaglogesp("PFFS-SYSTEM","Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke");
-					/*
-					Toast.makeText(
-					        this,
-					        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke", Toast.LENGTH_LONG).show();
-					        */
-					ok=false;
+					        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke",
+					        Toast.LENGTH_SHORT).show();
+					// diaglogesp("PFFS-SYSTEM","Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke");
+					ok = false;
 				}
 				else
 				{
-					timeend=timestart;
-					ok=true;
+					timeend = timestart;
+					ok = true;
 				}
 			}
 			// todo
-			if(ok==true)
+			*/
+			if(ok == true)
 			{
 				Runnable r = new Runnable()
 				{
@@ -582,7 +625,7 @@ public class MainActivity extends Activity implements OnClickListener
 						{
 							public void run()
 							{
-								if(v_test == 822711)
+								if(v_test == versionsnr)
 								{
 									// String a=""+v_test;
 									diaglogesp("Update nicht verfügbar",
@@ -610,6 +653,7 @@ public class MainActivity extends Activity implements OnClickListener
 	}
 	
 	/**
+	 * @deprecated
 	 * Not working Task System
 	 */
 	public static void tasklevel()
@@ -719,6 +763,9 @@ public class MainActivity extends Activity implements OnClickListener
 		alertDialog2.show();
 	}
 	
+	/**
+	 * Gibt einen Alertdialoge mit den Votelinks aus.
+	 */
 	public void dialoge_vote()
 	{
 		final SpannableString m = new SpannableString(Votelinksmsg);
@@ -754,35 +801,46 @@ public class MainActivity extends Activity implements OnClickListener
 		alertDialog2.show();
 	}
 	
-	public boolean sicherung()
+	/**
+	 * @param zeit Die zu wartene Zeit.
+	 * @return True bei warte Zeit ist um, false wenn sie nicht um ist.
+	 */
+	public boolean sicherung(int zeit)
 	{
-		boolean ok=false;
-		timestart=System.nanoTime();
-		if(speicher==0 & timeend==0)
+		int warten=zeit;
+		boolean ok = false;
+		timestart = System.nanoTime();
+		if(speicher == 0 & timeend == 0)
 		{
-			ok=true;
-			timeend=timestart;
-			return ok;
+			ok = true;
+			timeend = timestart;
 		}
-		else if(timeend!=0)
+		else if(timeend != 0)
 		{
-			speicher=timestart-timeend;
-			speicher=speicher/sec;
-			if(speicher<10)
+			speicher = timestart - timeend;
+			speicher = speicher / sec;
+			if(speicher < warten)
 			{
 				Toast.makeText(
 				        this,
-				        "PFFS-SYSTEM: Es kann nur alle 10sek neugeladen werden", Toast.LENGTH_LONG).show();
-				ok=false;
-				return ok;
+				        "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke",
+				        Toast.LENGTH_SHORT).show();
+				ok = false;
 			}
 			else
 			{
-				timeend=timestart;
-				ok=true;
-				return ok;
+				timeend = timestart;
+				ok = true;
 			}
 		}
-		return ok;
+		// todo
+		if(ok == true)
+		{
+			return ok;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

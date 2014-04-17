@@ -22,6 +22,8 @@ public class Networkthreadimpl implements Networkthread
 {
 	String Serverdaten;
 	public static HashMap send = null;
+	public final String NCAPI="PRIVATE URL";
+	public final String NCServerinfo="PRIVATE URL";
 	
 	/*
 	 * (non-Javadoc)
@@ -147,6 +149,67 @@ public class Networkthreadimpl implements Networkthread
 	 * 
 	 * public HashMap getsend() { return send; }
 	 */
+
+	@Override
+    public HashMap getNullApiServerinfo()
+    {
+		try
+		{
+			final URL url = new URL(NCServerinfo);
+			try
+			{
+				final BufferedReader reader = new BufferedReader(
+				        new InputStreamReader(url.openStream()));
+				final String data = reader.readLine();
+				
+				final Gson gson = new Gson();
+				return gson.fromJson(data, HashMap.class);
+			}
+			catch (final MalformedURLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+    public HashMap getNullApiOtherinfo(String URLparameter)
+    {
+		try
+		{
+			final URL url = new URL(NCAPI+URLparameter);
+			try
+			{
+				/*
+				 * Serverdaten=Server; Readers re = new Readers(); new
+				 * Thread(re).start(); Future<BufferedReader> getreader =
+				 * (Future<BufferedReader>) re.getreader();
+				 * Future<BufferedReader> rest=getreader; final BufferedReader
+				 * reader = new BufferedReader(re.getreader());
+				 */
+				final BufferedReader reader = new BufferedReader(
+				        new InputStreamReader(url.openStream()));
+				final String data = reader.readLine();
+				
+				final Gson gson = new Gson();
+				return gson.fromJson(data, HashMap.class);
+			}
+			catch (final MalformedURLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		catch (final IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+    }
 }
 /*
  * class Networkcalltask extends AsyncTask<String, Void, HashMap> { private
