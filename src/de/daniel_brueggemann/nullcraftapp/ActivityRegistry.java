@@ -9,13 +9,17 @@ import java.util.List;
 import android.app.Activity;
 
 /**
- * @author A380
- *
+ * @author Daniel Brüggemann
+ * @version Alpha 0.5
  */
 public class ActivityRegistry
 {
 	private static List<Activity> _activities;
 	
+	/**
+	 * Regisstriert eine Activity
+	 * @param activity die zu registrierende Activity
+	 */
 	public static void register(Activity activity)
 	{
 		if(_activities == null)
@@ -25,6 +29,9 @@ public class ActivityRegistry
 		_activities.add(activity);
 	}
 	
+	/**
+	 * Beendent alle registrierte Activitys
+	 */
 	public static void finishAll()
 	{
 		for(Activity activity : _activities)
@@ -33,9 +40,12 @@ public class ActivityRegistry
 		}
 	}
 	
+	/**
+	 * Beendet eine Spezifische Activity, don't work at the moment
+	 */
 	public static void finishthis()
 	{
-		int index = _activities.size()-1;
+		int index = _activities.size() - 1;
 		Activity activity = _activities.get(index);
 		activity.finish();
 	}

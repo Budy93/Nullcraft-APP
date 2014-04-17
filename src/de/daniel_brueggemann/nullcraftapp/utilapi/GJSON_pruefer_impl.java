@@ -27,10 +27,16 @@ public class GJSON_pruefer_impl implements GJSON_pruefer
 		boolean rueck=JSONObject.containsKey(Key);
 		return false;
 		*/
-		
-		if(JSONObject.containsKey(Key))
+		if(JSONObject!=null)
 		{
-			return true;
+			if(JSONObject.containsKey(Key))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{

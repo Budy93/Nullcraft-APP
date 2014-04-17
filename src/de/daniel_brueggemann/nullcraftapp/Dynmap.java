@@ -32,19 +32,13 @@ public class Dynmap extends Activity
 		setContentView(R.layout.activity_dynmap);
 		ActivityRegistry.register(this);
 		/*
-		EmcInterface emc = new EmcInterfaceImpl();
-		String[] emc_text = new String[2];
-		emc_text=emc.EMC_abfrage();
-		if (emc_text[1].equals("true"))
-		{
-			Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
-			Bundle Transfer = new Bundle();
-			Transfer.putString("grund", emc_text[0]);
-			Intent in = new Intent(this, Emc.class);
-			in.putExtras(Transfer);
-			startActivity(in);
-		}
-		*/
+		 * EmcInterface emc = new EmcInterfaceImpl(); String[] emc_text = new
+		 * String[2]; emc_text=emc.EMC_abfrage(); if
+		 * (emc_text[1].equals("true")) { Toast.makeText(this,
+		 * "Notabschaltung",Toast.LENGTH_LONG).show(); Bundle Transfer = new
+		 * Bundle(); Transfer.putString("grund", emc_text[0]); Intent in = new
+		 * Intent(this, Emc.class); in.putExtras(Transfer); startActivity(in); }
+		 */
 		browser = (WebView) findViewById(R.id.mapview);
 		WebSettings webSettings = browser.getSettings();
 		webSettings.setJavaScriptEnabled(true);
@@ -52,6 +46,7 @@ public class Dynmap extends Activity
 		String url = "http://cluster01.nullcraft.de:8123/";
 		browser.loadUrl(url);
 	}
+	
 	public boolean onCreateOptionsMenu(Menu menu)
 	{ // Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main_dynmap, menu);
@@ -76,19 +71,14 @@ public class Dynmap extends Activity
 				return true;
 			case R.id.News:
 				/*
-				EmcInterface emc = new EmcInterfaceImpl();
-				String[] emc_text = new String[2];
-				emc_text=emc.EMC_abfrage();
-				if (emc_text[1].equals("true"))
-				{
-					Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
-					Bundle Transfer = new Bundle();
-					Transfer.putString("grund", emc_text[0]);
-					Intent in = new Intent(this, Emc.class);
-					in.putExtras(Transfer);
-					startActivity(in);
-				}
-				*/
+				 * EmcInterface emc = new EmcInterfaceImpl(); String[] emc_text
+				 * = new String[2]; emc_text=emc.EMC_abfrage(); if
+				 * (emc_text[1].equals("true")) { Toast.makeText(this,
+				 * "Notabschaltung",Toast.LENGTH_LONG).show(); Bundle Transfer =
+				 * new Bundle(); Transfer.putString("grund", emc_text[0]);
+				 * Intent in = new Intent(this, Emc.class);
+				 * in.putExtras(Transfer); startActivity(in); }
+				 */
 				Intent in = new Intent(this, Newsreaderselect.class);
 				startActivity(in);
 				return true;
@@ -111,6 +101,7 @@ public class Dynmap extends Activity
 			startActivity(in);
 		}
 	}
+	
 	public void bendendiagloge()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);

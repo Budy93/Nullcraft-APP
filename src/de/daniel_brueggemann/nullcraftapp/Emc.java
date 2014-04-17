@@ -66,22 +66,23 @@ public class Emc extends Activity implements OnClickListener
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	protected void onCreate(Bundle savedInstanceState)
-	{	
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_emc);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		ActivityRegistry.register(this);
-		Bundle grund_intent=getIntent().getExtras();
-		gruende=grund_intent.getString("grund");
-		emc_text = (TextView)findViewById(R.id.emc_text);
+		Bundle grund_intent = getIntent().getExtras();
+		gruende = grund_intent.getString("grund");
+		emc_text = (TextView) findViewById(R.id.emc_text);
 		emc_text.setTextColor(Color.RED);
 		emc_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-		gruende=gruende+"Developer: Budy93, ©Berlin 2014";
+		gruende = gruende + "Developer: Budy93, ©Berlin 2014";
 		emc_text.setText(gruende);
-		ende = (Button)findViewById(R.id.emc_beenden);
+		ende = (Button) findViewById(R.id.emc_beenden);
 		ende.setOnClickListener(this);
 		
 	}
+	
 	public void diaglogesp(String Title, String grund)
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
@@ -100,19 +101,20 @@ public class Emc extends Activity implements OnClickListener
 		        {
 			        public void onClick(DialogInterface dialog, int which)
 			        {
-			        	dialog.cancel();
-			        	ActivityRegistry.finishAll();
+				        dialog.cancel();
+				        ActivityRegistry.finishAll();
 			        }
 		        });
 		alertDialog2.show();
 	}
-
+	
 	@Override
-    public void onClick(View v)
-    {
-		if(v==ende)
+	public void onClick(View v)
+	{
+		if(v == ende)
 		{
-			diaglogesp("Es tut uns leid","Wir danken für dein Verständnis wir sind bald wieder da");
+			diaglogesp("Es tut uns leid",
+			        "Wir danken für dein Verständnis wir sind bald wieder da");
 		}
-    }
+	}
 }

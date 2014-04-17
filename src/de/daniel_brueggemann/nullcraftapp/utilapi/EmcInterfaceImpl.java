@@ -105,7 +105,7 @@ public class EmcInterfaceImpl implements EmcInterface
     public int TEM_Update_Ceck(String URL)
     {
 		String URL_update=URL;
-		String rückgabe="082271E1";
+		//String rückgabe="082271E2";
 		Object update;
 		Networkthread net=new Networkthreadimpl();
 		final HashMap JUpdate=net.testServer(URL_update);
@@ -121,7 +121,7 @@ public class EmcInterfaceImpl implements EmcInterface
 		}
 		else
 		{
-			return 822711;
+			return 822712;
 		}
     }
 	

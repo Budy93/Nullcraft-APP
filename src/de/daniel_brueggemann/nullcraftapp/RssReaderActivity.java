@@ -63,19 +63,14 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 		if(v == test)
 		{
 			/*
-			EmcInterface emc = new EmcInterfaceImpl();
-			String[] emc_text = new String[2];
-			emc_text=emc.EMC_abfrage();
-			if (emc_text[1].equals("true"))
-			{
-				Toast.makeText(this, "Notabschaltung",Toast.LENGTH_LONG).show();
-				Bundle Transfer = new Bundle();
-				Transfer.putString("grund", emc_text[0]);
-				Intent in = new Intent(this, Emc.class);
-				in.putExtras(Transfer);
-				startActivity(in);
-			}
-			*/
+			 * EmcInterface emc = new EmcInterfaceImpl(); String[] emc_text =
+			 * new String[2]; emc_text=emc.EMC_abfrage(); if
+			 * (emc_text[1].equals("true")) { Toast.makeText(this,
+			 * "Notabschaltung",Toast.LENGTH_LONG).show(); Bundle Transfer = new
+			 * Bundle(); Transfer.putString("grund", emc_text[0]); Intent in =
+			 * new Intent(this, Emc.class); in.putExtras(Transfer);
+			 * startActivity(in); }
+			 */
 			Intent in = new Intent(this, Newsreaderselect.class);
 			startActivity(in);
 		}
@@ -95,12 +90,12 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 		intent.setData(Uri.parse(URL));
 		startActivity(intent);
 		/*
-		Intent in = new Intent(this, Newsreader.class);
-		in.putExtras(urltransfer);
-		// Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(data.link));
-		
-		startActivity(in);
-		*/
+		 * Intent in = new Intent(this, Newsreader.class);
+		 * in.putExtras(urltransfer); // Intent intent = new
+		 * Intent(Intent.ACTION_VIEW, Uri.parse(data.link));
+		 * 
+		 * startActivity(in);
+		 */
 	}
 	
 	private void retrieveRSSFeed(String urlToRssFeed, ArrayList<RSSItem> list)
@@ -188,6 +183,7 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 		        });
 		alertDialog2.show();
 	}
+	
 	public void onBackPressed()
 	{
 		Intent in = new Intent(this, Newsreaderselect.class);

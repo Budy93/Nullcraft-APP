@@ -53,5 +53,10 @@ public interface Networkthread
 	 * @return HashMap mit JSON objekt
 	 */
 	public HashMap testServer(String Server);
+	
+	public HashMap getNullApiServerinfo();
+	
+	public HashMap getNullApiOtherinfo(String URLparameter);
+	
 	public String getServerdaten();
 }

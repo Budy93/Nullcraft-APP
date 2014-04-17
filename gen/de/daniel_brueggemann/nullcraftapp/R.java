@@ -30,16 +30,16 @@ public final class R {
         public static final int Beenden=0x7f080017;
         public static final int Beendenme=0x7f080032;
         public static final int Beendenmenu_dyn=0x7f08002e;
+        public static final int CPRights=0x7f08001b;
         public static final int Dyn=0x7f080014;
         public static final int Hauptmene=0x7f08002b;
         public static final int Impressum_men_dyn=0x7f08002d;
         public static final int News=0x7f08002c;
-        public static final int TestURL2=0x7f08001b;
-        public static final int Updat=0x7f08002f;
+        public static final int Updat=0x7f080030;
         public static final int VersionM=0x7f080012;
         public static final int VersionText=0x7f080013;
         public static final int Votel=0x7f080016;
-        public static final int Voten_menu=0x7f080030;
+        public static final int Voten_menu=0x7f08002f;
         public static final int action_settings=0x7f080026;
         public static final int aenderungshist=0x7f080022;
         public static final int ankuedinews=0x7f080021;
@@ -101,6 +101,7 @@ public final class R {
     }
     public static final class string {
         public static final int Dynmap=0x7f05001d;
+        public static final int Keine_Netzwerk=0x7f050023;
         public static final int Kontack=0x7f050020;
         public static final int MODT=0x7f050014;
         public static final int SPlayer=0x7f050012;
