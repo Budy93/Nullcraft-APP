@@ -108,32 +108,12 @@
         android:text="@string/Voten" />
 
     <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="31dp"
-        android:text="@string/neuladen"
-        android:textStyle="bold" />
-
-    <Button
         android:id="@+id/impress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/Beenden"
         android:layout_toLeftOf="@+id/back"
         android:text="@string/Kontack" />
-
-    <Button
-        android:id="@+id/Beenden"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/back"
-        android:layout_alignBottom="@+id/back"
-        android:layout_alignLeft="@+id/impress"
-        android:text="@string/x" />
 
     <TextView
         android:id="@+id/latency_info"
@@ -213,5 +193,32 @@
         android:layout_alignTop="@+id/news"
         android:layout_toLeftOf="@+id/back"
         android:text="@string/update" />
+
+    <Button
+        android:id="@+id/Beenden"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CPRights"
+        android:layout_alignLeft="@+id/impress"
+        android:text="@string/x" />
+
+    <CheckBox
+        android:id="@+id/voteerinnern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/news"
+        android:layout_alignLeft="@+id/updatebtn"
+        android:checked="false"
+        android:text="@string/erinnern" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CPRights"
+        android:layout_alignLeft="@+id/Votel"
+        android:text="@string/neuladen"
+        android:textStyle="bold" />
 
 </RelativeLayout>

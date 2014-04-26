@@ -10,8 +10,6 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
-import de.daniel_brueggemann.nullcraftapp.rss.RSSItem;
-import de.daniel_brueggemann.nullcraftapp.rss.RSSParser;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -33,6 +31,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.daniel_brueggemann.nullcraftapp.rss.RSSItem;
+import de.daniel_brueggemann.nullcraftapp.rss.RSSParser;
 
 @SuppressLint("NewApi")
 public class RssReaderActivity extends ListActivity implements OnClickListener
