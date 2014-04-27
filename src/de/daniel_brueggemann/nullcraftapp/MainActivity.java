@@ -1,6 +1,8 @@
 package de.daniel_brueggemann.nullcraftapp;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -19,6 +21,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -184,9 +187,8 @@ public class MainActivity extends Activity implements OnClickListener
 		updatecheck.setOnClickListener(this);
 		speicher = 0;
 		timeend = 0;
-		votetimer();
 		darferinnern = (CheckBox) findViewById(R.id.voteerinnern);
-		//darferinnern.setTextColor(Color.GREEN);
+		// darferinnern.setTextColor(Color.GREEN);
 		// Get the app's shared preferences
 		SharedPreferences app_preferences = PreferenceManager
 		        .getDefaultSharedPreferences(this);
@@ -199,7 +201,8 @@ public class MainActivity extends Activity implements OnClickListener
 		editor = app_preferences.edit();
 		if(erlaubnis == true)
 		{
-			counddown.start();
+			votetimer();
+			//counddown.start();
 		}
 		// createNotification();
 		
@@ -528,14 +531,17 @@ public class MainActivity extends Activity implements OnClickListener
 			editor.commit(); // Very important
 			if(checked == true)
 			{
-				counddown.start();
+				//counddown.start();
 				diaglogesp(
 				        "Voteerinnern",
 				        "Danke das du dich f\u00FCr die Vote-Erinnerungsfunktion entschieden hast. Du wirst alle 24h mit einer Vibration und eine Notiz daran erinnert. Wenn du dies nicht mehr willst, entferne einfach dann den Hacken. Bitte beende mit dieser Funktion nicht die APP mit X oder \u00FCber das Men\u00FC mit Beenden, da sonst der Countdown beendet wird.");
+				diaglorestart();
 			}
 			else
 			{
-				counddown.cancel();
+				diaglorestart();
+				//myTimer.cancel;
+				//counddown.cancel();
 			}
 		}
 	}
@@ -565,7 +571,7 @@ public class MainActivity extends Activity implements OnClickListener
 				        Toast.makeText(getApplicationContext(),
 				                "Es war nett mit dir. :(", Toast.LENGTH_SHORT)
 				                .show();
-				        counddown.cancel();
+				        //counddown.cancel();
 				        ActivityRegistry.finishAll();
 			        }
 		        });
@@ -915,10 +921,41 @@ public class MainActivity extends Activity implements OnClickListener
 	private void votetimer()
 	{
 		/*
+		Timer myTimer = new Timer(); // Timer erzeugen
+		final Handler uiHandler = new Handler();
+		myTimer.schedule(new TimerTask() 
+		{
+		    @Override
+		    public void run() 
+		    {
+		        uiHandler.post(new Runnable() 
+		        {
+		            @Override
+		            public void run() 
+		            {
+		            	if(android.os.Build.VERSION.SDK_INT < 16)
+						{
+							dialoge_vote();
+							diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
+						}
+						if(android.os.Build.VERSION.SDK_INT >= 16)
+						{
+							createNotification();
+						}
+		            }
+		        });
+		    };
+		}, 60L, 60L * 1000);//Intervall = 60000 Millisekunden, 0 Millisekunden bis zum ersten Start.
+		
+		*/
+		
+		
+		/*
 		 * 86400000 = 24h
 		 * Test: 20000 = 20 sek
 		 */
-		counddown = new CountDownTimer(86400000, 1000)
+		/*
+		counddown = new CountDownTimer(3600000, 1000)
 		{
 			
 			public void onTick(long millisUntilFinished)
@@ -939,6 +976,48 @@ public class MainActivity extends Activity implements OnClickListener
 				}
 			}
 		};
+		*/
+		Runnable r = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				runOnUiThread(new Runnable()
+				{
+					public void run()
+					{
+						/*
+						 * 86400000 = 24h
+						 * Test: 20000 = 20 sek
+						 */
+						counddown = new CountDownTimer(360000, 1000)
+						{
+							
+							public void onTick(long millisUntilFinished)
+							{
+								//
+							}
+							
+							public void onFinish()
+							{
+								if(android.os.Build.VERSION.SDK_INT < 16)
+								{
+									dialoge_vote();
+									diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
+								}
+								if(android.os.Build.VERSION.SDK_INT >= 16)
+								{
+									createNotification();
+								}
+							}
+						};
+						counddown.start();
+					}
+				});
+			}
+		};
+		Thread t = new Thread(r);
+		t.start();
 	}
 	
 	/**
@@ -965,7 +1044,7 @@ public class MainActivity extends Activity implements OnClickListener
 		 * 
 		 * notificationManager.notify(0, noti);
 		 */
-		counddown.cancel();
+		//counddown.cancel();
 		Vibrator vibra = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		boolean vibrator = vibra.hasVibrator();
 		if(vibrator == true)
@@ -973,11 +1052,9 @@ public class MainActivity extends Activity implements OnClickListener
 			vibra.vibrate(500);
 		}
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-		        this)
-		        .setSmallIcon(R.drawable.ic_launcher)
+		        this).setSmallIcon(R.drawable.ic_launcher)
 		        .setContentTitle("Voten")
-		        .setContentText(
-		                "Denk bitte daran zu Voten");
+		        .setContentText("Denk bitte daran zu Voten");
 		// Creates an explicit intent for an Activity in your app
 		Intent resultIntent = new Intent(this, VoteActivity.class);
 		
@@ -999,6 +1076,37 @@ public class MainActivity extends Activity implements OnClickListener
 		// mId allows you to update the notification later on.
 		mNotificationManager.notify(mId, mBuilder.build());
 		mId++;
+		votetimer();
 		// dialoge_vote();
+	}
+	
+	/**
+	 * Restart der APP
+	 * @param Title Titel der Dialogmeldung
+	 * @param texte Text der Dialogemeldung
+	 */
+	private void diaglorestart()
+	{
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+		// final AlertDialog alertDialog2 = new AlertDialog.Builder(this)
+		// .create();
+		
+		// Setting Dialog Title
+		alertDialog2.setTitle("Restart");
+		
+		// Setting Dialog Message
+		alertDialog2.setMessage("Die APP muss nun neu gestart werden");
+		
+		// Setting Positive "Yes" Btn
+		alertDialog2.setPositiveButton("OK",
+		        new DialogInterface.OnClickListener()
+		        {
+			        public void onClick(DialogInterface dialog, int which)
+			        {
+				        dialog.cancel();
+				        ActivityRegistry.finishAll();
+			        }
+		        });
+		alertDialog2.show();
 	}
 }
