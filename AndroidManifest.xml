@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.daniel_brueggemann.nullcraftapp"
-    android:versionCode="7"
-    android:versionName="Beta 0.8.2.3.E1" android:installLocation="auto">
+    android:versionCode="8"
+    android:versionName="Beta 0.8.2.3.E2" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 	<!-- uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" /-->
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name" android:theme="@style/AppTheme" android:allowClearUserData="true" android:hasCode="true" android:enabled="true" android:logo="@drawable/ic_launcher" android:testOnly="false" android:description="@string/app_discription" android:hardwareAccelerated="true" android:uiOptions="splitActionBarWhenNarrow"><activity android:name="de.daniel_brueggemann.nullcraftapp.MainActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,8 @@
 	<activity android:name="Newsreader" android:label="@string/app_name_new"></activity>
 	<activity android:name="RssReaderActivity" android:label="@string/app_name_new"></activity>
 	<activity android:name="VoteActivity" android:icon="@drawable/ic_launcher"></activity>
+	<receiver android:name=".utilapi.votealarmReciver" android:label="@string/app_name"></receiver>
+	<service android:name=".utilapi.votealarmNotficationcreateService" android:enabled="true" android:label="@string/app_name"></service>
         
     </application>
 

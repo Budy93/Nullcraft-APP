@@ -1,8 +1,6 @@
 package de.daniel_brueggemann.nullcraftapp;
 
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,11 +15,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -43,6 +41,7 @@ import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer;
 import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer_impl;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthread;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthreadimpl;
+import de.daniel_brueggemann.nullcraftapp.utilapi.votealarmReciver;
 
 /**
  * Nullapp für den Server Nullcraft
@@ -85,6 +84,7 @@ public class MainActivity extends Activity implements OnClickListener
 	private static int mId = 0;
 	public static CheckBox darferinnern;
 	public SharedPreferences.Editor editor;
+	public votealarmReciver alarm = new votealarmReciver();
 	
 	/*
 	 * (non-Javadoc)
@@ -201,7 +201,10 @@ public class MainActivity extends Activity implements OnClickListener
 		editor = app_preferences.edit();
 		if(erlaubnis == true)
 		{
-			votetimer();
+			alarm.setAlarm(this);
+			//votetimer();
+			
+			//timerVote(); Läuft noch nicht!!!!
 			//counddown.start();
 		}
 		// createNotification();
@@ -531,15 +534,19 @@ public class MainActivity extends Activity implements OnClickListener
 			editor.commit(); // Very important
 			if(checked == true)
 			{
+				alarm.setAlarm(this);
 				//counddown.start();
+				/*
 				diaglogesp(
 				        "Voteerinnern",
 				        "Danke das du dich f\u00FCr die Vote-Erinnerungsfunktion entschieden hast. Du wirst alle 24h mit einer Vibration und eine Notiz daran erinnert. Wenn du dies nicht mehr willst, entferne einfach dann den Hacken. Bitte beende mit dieser Funktion nicht die APP mit X oder \u00FCber das Men\u00FC mit Beenden, da sonst der Countdown beendet wird.");
 				diaglorestart();
+				*/
 			}
 			else
 			{
-				diaglorestart();
+				alarm.cancelAlarm(this);
+				//diaglorestart();
 				//myTimer.cancel;
 				//counddown.cancel();
 			}
@@ -917,6 +924,7 @@ public class MainActivity extends Activity implements OnClickListener
 	
 	/**
 	 * Erstellt einen Countdown, der alle 24 eine Notifikation abschickt.
+	 * @deprecated
 	 */
 	private void votetimer()
 	{
@@ -977,8 +985,10 @@ public class MainActivity extends Activity implements OnClickListener
 			}
 		};
 		*/
+		
 		Runnable r = new Runnable()
 		{
+			
 			@Override
 			public void run()
 			{
@@ -988,9 +998,10 @@ public class MainActivity extends Activity implements OnClickListener
 					{
 						/*
 						 * 86400000 = 24h
+						 * 43200000 = 12h
 						 * Test: 20000 = 20 sek
 						 */
-						counddown = new CountDownTimer(360000, 1000)
+						counddown = new CountDownTimer(43200000, 1000)
 						{
 							
 							public void onTick(long millisUntilFinished)
@@ -1019,10 +1030,40 @@ public class MainActivity extends Activity implements OnClickListener
 		Thread t = new Thread(r);
 		t.start();
 	}
+
+	/**
+	 * @deprecated
+	 */
+    @SuppressWarnings("unused")
+    private void timerVote()
+    {
+	    counddown = new CountDownTimer(3600000, 1000)
+		{
+			
+			public void onTick(long millisUntilFinished)
+			{
+				//
+			}
+			
+			public void onFinish()
+			{
+				if(android.os.Build.VERSION.SDK_INT < 16)
+				{
+					dialoge_vote();
+					diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
+				}
+				if(android.os.Build.VERSION.SDK_INT >= 16)
+				{
+					createNotification();
+				}
+			}
+		};
+    }
 	
 	/**
 	 * Erstellt eine Notification für den Nutzer
 	 * Nur Kompertibel mit Android API 16
+	 * @deprecated
 	 */
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private void createNotification()
@@ -1054,7 +1095,9 @@ public class MainActivity extends Activity implements OnClickListener
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 		        this).setSmallIcon(R.drawable.ic_launcher)
 		        .setContentTitle("Voten")
-		        .setContentText("Denk bitte daran zu Voten");
+		        .setContentText("Denk bitte daran zu Voten")
+		        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+		        .setTicker("New Storage Request").setAutoCancel(true);
 		// Creates an explicit intent for an Activity in your app
 		Intent resultIntent = new Intent(this, VoteActivity.class);
 		
@@ -1084,8 +1127,10 @@ public class MainActivity extends Activity implements OnClickListener
 	 * Restart der APP
 	 * @param Title Titel der Dialogmeldung
 	 * @param texte Text der Dialogemeldung
+	 * @deprecated
 	 */
-	private void diaglorestart()
+	@SuppressWarnings("unused")
+    private void diaglorestart()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
 		// final AlertDialog alertDialog2 = new AlertDialog.Builder(this)

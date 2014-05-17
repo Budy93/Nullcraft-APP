@@ -210,6 +210,7 @@
         android:layout_above="@+id/news"
         android:layout_alignLeft="@+id/updatebtn"
         android:checked="false"
+        android:enabled="true"
         android:text="@string/erinnern" />
 
     <Button
