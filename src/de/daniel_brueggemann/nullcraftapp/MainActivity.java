@@ -41,6 +41,8 @@ import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer;
 import de.daniel_brueggemann.nullcraftapp.utilapi.GJSON_pruefer_impl;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthread;
 import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthreadimpl;
+import de.daniel_brueggemann.nullcraftapp.utilapi.Utilapi;
+import de.daniel_brueggemann.nullcraftapp.utilapi.UtilapiImpl;
 import de.daniel_brueggemann.nullcraftapp.utilapi.votealarmReciver;
 
 /**
@@ -85,6 +87,9 @@ public class MainActivity extends Activity implements OnClickListener
 	public static CheckBox darferinnern;
 	public SharedPreferences.Editor editor;
 	public votealarmReciver alarm = new votealarmReciver();
+	public static Boolean sdcard = false;
+	public Utilapi util = new UtilapiImpl();
+	public static Boolean pathcreat = false;
 	
 	/*
 	 * (non-Javadoc)
@@ -197,21 +202,40 @@ public class MainActivity extends Activity implements OnClickListener
 		boolean erlaubnis = app_preferences.getBoolean("erlaubnis", false);
 		
 		darferinnern.setChecked(erlaubnis);
+		//darferinnern.setChecked(false);
 		darferinnern.setOnClickListener(this);
+		
 		editor = app_preferences.edit();
+		/*
 		if(erlaubnis == true)
 		{
-			alarm.setAlarm(this);
-			//votetimer();
-			
-			//timerVote(); Läuft noch nicht!!!!
-			//counddown.start();
+			if(alarm.alarmset() == false)
+			{
+				alarm.cancelAlarm(this);
+				alarm.setAlarm(this);
+				//util.log("Eingang in Setalarm");
+			}
 		}
-		// createNotification();
-		
-		// progress = ProgressDialog.show(null, TestURL, ServerURL);
+		*/
+		//createsavepath();
 		network_aufgabe();
-		// progress.cancel();
+	}
+	
+	/**
+	 * Erstellt einen Speicherpfad für spätere Prüfung
+	 */
+	@SuppressWarnings("unused")
+    private void createsavepath()
+	{
+		sdcard = util.sdkartevorhanden();
+		if(sdcard == true)
+		{
+			pathcreat = util.filexist("/NullcraftAPP/");
+			if(pathcreat == false)
+			{
+				util.pathcreate();
+			}
+		}
 	}
 	
 	/**
@@ -400,18 +424,29 @@ public class MainActivity extends Activity implements OnClickListener
 		}
 		else if(v == Dynmap)
 		{
-			speicher = 0;
-			timeend = 0;
-			if(android.os.Build.VERSION.SDK_INT >= 10)
+			Boolean netzwerk = false;
+			netzwerk = util.checkNetzwerkprovider();
+			if(netzwerk == true)
 			{
-				Intent in = new Intent(MainActivity.this, Dynmap.class);
-				startActivity(in);
+				speicher = 0;
+				timeend = 0;
+				if(android.os.Build.VERSION.SDK_INT >= 10)
+				{
+					Intent in = new Intent(MainActivity.this, Dynmap.class);
+					startActivity(in);
+				}
+				else
+				{
+					final Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.setData(Uri
+					        .parse("http://cluster01.nullcraft.de:8123/"));
+					startActivity(intent);
+				}
 			}
 			else
 			{
-				final Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setData(Uri.parse("http://cluster01.nullcraft.de:8123/"));
-				startActivity(intent);
+				diaglogesp("Kein Netzwerk",
+				        "Kann ich leider nicht machen, du hast kein Netz");
 			}
 		}
 		else if(v == Version)
@@ -426,14 +461,15 @@ public class MainActivity extends Activity implements OnClickListener
 			 * onClick(DialogInterface dialog, int which) { dialog.cancel(); }
 			 * }); alertDialog.show();
 			 */
-			String versiontext = "Version: Beta 0.8.2.3.E1" + "\n"
-			        + "Codename: Rock" + "\n" + "Autor: Budy93" + "\n"
+			String versiontext = "Version: Beta 0.8.2.3.E2" + "\n"
+			        + "Codename: Minimalistin" + "\n" + "Autor: Budy93" + "\n"
 			        + "E-mail: dev@daniel-brueggemann.de";
 			diaglogesp("Version", versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Beta 0.8.2.3.E1" + "\n" + "Codename: Rock" + "\n"
-			                + "Autor: Budy93", Toast.LENGTH_LONG).show();
+			        "Version: Beta 0.8.2.3.E2" + "\n"
+			                + "Codename: Minimalistin" + "\n" + "Autor: Budy93",
+			        Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)
 		{
@@ -535,20 +571,19 @@ public class MainActivity extends Activity implements OnClickListener
 			if(checked == true)
 			{
 				alarm.setAlarm(this);
-				//counddown.start();
+				// counddown.start();
 				/*
-				diaglogesp(
-				        "Voteerinnern",
-				        "Danke das du dich f\u00FCr die Vote-Erinnerungsfunktion entschieden hast. Du wirst alle 24h mit einer Vibration und eine Notiz daran erinnert. Wenn du dies nicht mehr willst, entferne einfach dann den Hacken. Bitte beende mit dieser Funktion nicht die APP mit X oder \u00FCber das Men\u00FC mit Beenden, da sonst der Countdown beendet wird.");
-				diaglorestart();
-				*/
+				 * diaglogesp( "Voteerinnern",
+				 * "Danke das du dich f\u00FCr die Vote-Erinnerungsfunktion entschieden hast. Du wirst alle 24h mit einer Vibration und eine Notiz daran erinnert. Wenn du dies nicht mehr willst, entferne einfach dann den Hacken. Bitte beende mit dieser Funktion nicht die APP mit X oder \u00FCber das Men\u00FC mit Beenden, da sonst der Countdown beendet wird."
+				 * ); diaglorestart();
+				 */
 			}
 			else
 			{
 				alarm.cancelAlarm(this);
-				//diaglorestart();
-				//myTimer.cancel;
-				//counddown.cancel();
+				// diaglorestart();
+				// myTimer.cancel;
+				// counddown.cancel();
 			}
 		}
 	}
@@ -578,7 +613,7 @@ public class MainActivity extends Activity implements OnClickListener
 				        Toast.makeText(getApplicationContext(),
 				                "Es war nett mit dir. :(", Toast.LENGTH_SHORT)
 				                .show();
-				        //counddown.cancel();
+				        // counddown.cancel();
 				        ActivityRegistry.finishAll();
 			        }
 		        });
@@ -830,7 +865,7 @@ public class MainActivity extends Activity implements OnClickListener
 			modt = pr.check_key(Nullapi, "motd");
 			pingsystem = pr.check_key(Nullapi, "latency");
 			versiona = pr.check_key(Nullapi, "version");
-			if(Nullapi == null || JSON.get("status").equals("false"))
+			if(Nullapi == null || Nullapi.get("status").equals("false"))
 			{
 				text.setTextColor(Color.RED);
 				text.setText("Offline");
@@ -926,66 +961,9 @@ public class MainActivity extends Activity implements OnClickListener
 	 * Erstellt einen Countdown, der alle 24 eine Notifikation abschickt.
 	 * @deprecated
 	 */
+	@SuppressWarnings("unused")
 	private void votetimer()
 	{
-		/*
-		Timer myTimer = new Timer(); // Timer erzeugen
-		final Handler uiHandler = new Handler();
-		myTimer.schedule(new TimerTask() 
-		{
-		    @Override
-		    public void run() 
-		    {
-		        uiHandler.post(new Runnable() 
-		        {
-		            @Override
-		            public void run() 
-		            {
-		            	if(android.os.Build.VERSION.SDK_INT < 16)
-						{
-							dialoge_vote();
-							diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
-						}
-						if(android.os.Build.VERSION.SDK_INT >= 16)
-						{
-							createNotification();
-						}
-		            }
-		        });
-		    };
-		}, 60L, 60L * 1000);//Intervall = 60000 Millisekunden, 0 Millisekunden bis zum ersten Start.
-		
-		*/
-		
-		
-		/*
-		 * 86400000 = 24h
-		 * Test: 20000 = 20 sek
-		 */
-		/*
-		counddown = new CountDownTimer(3600000, 1000)
-		{
-			
-			public void onTick(long millisUntilFinished)
-			{
-				//
-			}
-			
-			public void onFinish()
-			{
-				if(android.os.Build.VERSION.SDK_INT < 16)
-				{
-					dialoge_vote();
-					diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
-				}
-				if(android.os.Build.VERSION.SDK_INT >= 16)
-				{
-					createNotification();
-				}
-			}
-		};
-		*/
-		
 		Runnable r = new Runnable()
 		{
 			
@@ -997,9 +975,7 @@ public class MainActivity extends Activity implements OnClickListener
 					public void run()
 					{
 						/*
-						 * 86400000 = 24h
-						 * 43200000 = 12h
-						 * Test: 20000 = 20 sek
+						 * 86400000 = 24h 43200000 = 12h Test: 20000 = 20 sek
 						 */
 						counddown = new CountDownTimer(43200000, 1000)
 						{
@@ -1014,7 +990,8 @@ public class MainActivity extends Activity implements OnClickListener
 								if(android.os.Build.VERSION.SDK_INT < 16)
 								{
 									dialoge_vote();
-									diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
+									diaglogesp("VOTEN",
+									        "Bitte vergiss nicht heute zu voten");
 								}
 								if(android.os.Build.VERSION.SDK_INT >= 16)
 								{
@@ -1030,35 +1007,6 @@ public class MainActivity extends Activity implements OnClickListener
 		Thread t = new Thread(r);
 		t.start();
 	}
-
-	/**
-	 * @deprecated
-	 */
-    @SuppressWarnings("unused")
-    private void timerVote()
-    {
-	    counddown = new CountDownTimer(3600000, 1000)
-		{
-			
-			public void onTick(long millisUntilFinished)
-			{
-				//
-			}
-			
-			public void onFinish()
-			{
-				if(android.os.Build.VERSION.SDK_INT < 16)
-				{
-					dialoge_vote();
-					diaglogesp("VOTEN", "Bitte vergiss nicht heute zu voten");
-				}
-				if(android.os.Build.VERSION.SDK_INT >= 16)
-				{
-					createNotification();
-				}
-			}
-		};
-    }
 	
 	/**
 	 * Erstellt eine Notification für den Nutzer
@@ -1068,24 +1016,6 @@ public class MainActivity extends Activity implements OnClickListener
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private void createNotification()
 	{
-		/*
-		 * // Prepare intent which is triggered if the // notification is
-		 * selected Intent intent = new Intent(this, MainActivity.class);
-		 * PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,
-		 * 0);
-		 * 
-		 * // Build notification // Actions are just fake Notification noti =
-		 * new Notification.Builder(this) .setContentTitle("Notification Title")
-		 * .setContentText("Click here to read")
-		 * .setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent)
-		 * .build(); NotificationManager notificationManager =
-		 * (NotificationManager) getSystemService(NOTIFICATION_SERVICE); // hide
-		 * the notification after its selected noti.flags |=
-		 * Notification.FLAG_AUTO_CANCEL;
-		 * 
-		 * notificationManager.notify(0, noti);
-		 */
-		//counddown.cancel();
 		Vibrator vibra = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		boolean vibrator = vibra.hasVibrator();
 		if(vibrator == true)
@@ -1093,10 +1023,13 @@ public class MainActivity extends Activity implements OnClickListener
 			vibra.vibrate(500);
 		}
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-		        this).setSmallIcon(R.drawable.ic_launcher)
+		        this)
+		        .setSmallIcon(R.drawable.ic_launcher)
 		        .setContentTitle("Voten")
 		        .setContentText("Denk bitte daran zu Voten")
-		        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+		        .setSound(
+		                RingtoneManager
+		                        .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
 		        .setTicker("New Storage Request").setAutoCancel(true);
 		// Creates an explicit intent for an Activity in your app
 		Intent resultIntent = new Intent(this, VoteActivity.class);
@@ -1119,8 +1052,6 @@ public class MainActivity extends Activity implements OnClickListener
 		// mId allows you to update the notification later on.
 		mNotificationManager.notify(mId, mBuilder.build());
 		mId++;
-		votetimer();
-		// dialoge_vote();
 	}
 	
 	/**
@@ -1130,7 +1061,7 @@ public class MainActivity extends Activity implements OnClickListener
 	 * @deprecated
 	 */
 	@SuppressWarnings("unused")
-    private void diaglorestart()
+	private void diaglorestart()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
 		// final AlertDialog alertDialog2 = new AlertDialog.Builder(this)
