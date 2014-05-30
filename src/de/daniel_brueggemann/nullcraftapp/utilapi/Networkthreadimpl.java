@@ -21,8 +21,8 @@ public class Networkthreadimpl implements Networkthread
 	String Serverdaten;
 	@SuppressWarnings("rawtypes")
 	public static HashMap send = null;
-	private final String NCAPI = "http://api.nullcraft.de/";
-	private final String NCServerinfo = "http://api.nullcraft.de/status.php";
+	private final String NCAPI = "Zensiert";
+	private final String NCServerinfo = "Zensiert";
 	
 	/*
 	 * (non-Javadoc)

@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/activity_nullcraft_aktivity"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_settings" android:titleCondensed="@string/app_name"/>
+
+</menu>
