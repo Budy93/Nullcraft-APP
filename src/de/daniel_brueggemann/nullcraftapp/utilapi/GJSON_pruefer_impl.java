@@ -3,7 +3,6 @@
  */
 package de.daniel_brueggemann.nullcraftapp.utilapi;
 
-import com.google.gson.Gson;
 import java.util.HashMap;
 
 /**
@@ -20,14 +19,14 @@ public class GJSON_pruefer_impl implements GJSON_pruefer
 	 * de.daniel_brueggemann.nullcraftapp.GJSON_pruefer#check_key(java.util.
 	 * HashMap, java.lang.String)
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean check_key(HashMap JSONObject, String Key)
 	{
 		/*
-		boolean rueck=JSONObject.containsKey(Key);
-		return false;
-		*/
-		if(JSONObject!=null)
+		 * boolean rueck=JSONObject.containsKey(Key); return false;
+		 */
+		if(JSONObject != null)
 		{
 			if(JSONObject.containsKey(Key))
 			{
@@ -43,7 +42,8 @@ public class GJSON_pruefer_impl implements GJSON_pruefer
 			return false;
 		}
 		
-	}	
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -51,24 +51,25 @@ public class GJSON_pruefer_impl implements GJSON_pruefer
 	 * de.daniel_brueggemann.nullcraftapp.GJSON_pruefer#check_key_inhalt(java
 	 * .util.HashMap, java.lang.String, java.lang.String, boolean)
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean check_key_inhalt(HashMap JSON, String Key, String Inhalt,
 	        boolean if_checket)
 	{
-		if(if_checket = false)
+		if(if_checket == false)
 		{
 			boolean test;
 			test = check_key(JSON, Key);
-			if(test = false)
+			if(test == false)
 			{
 				return false;
 			}
-			else if(test = true)
+			else if(test == true)
 			{
 				if_checket = true;
 			}
 		}
-		else if(if_checket = true)
+		else if(if_checket == true)
 		{
 			final Object check = JSON.get(Key);
 			String teststring = check.toString();

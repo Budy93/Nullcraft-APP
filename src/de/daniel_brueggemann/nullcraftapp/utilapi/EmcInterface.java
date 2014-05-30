@@ -10,7 +10,8 @@ package de.daniel_brueggemann.nullcraftapp.utilapi;
  */
 public interface EmcInterface
 {
-	//public final static String TestURL="http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/test";
+	// public final static String
+	// TestURL="http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/test";
 	/**
 	 * @return
 	 */

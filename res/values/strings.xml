@@ -4,20 +4,14 @@
     <string name="app_name">Nullcraft App</string>
     <string name="app_name_new">Nullcraft App News</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="impressum">Impressum</string>
     <string name="beenden">Beenden</string>
     <string name="haupt">Hauptmenü</string>
     <string name="zuruck">Zurück</string>
-    <string name="plugin">Plugin.Dj</string>
     <string name="latency">Latenz</string>
-    <string name="leer"></string>
-    <string name="test">Testview</string>
-    <string name="news">News</string>
+    <string name="leer"></string>    <string name="news">News</string>
     <string name="ankuendigung">Ankündig- \n ungen</string>
     <string name="tech">Technik News</string>
-    <string name="aenderung">Änderungs- \n history</string>
-    <string name="jobs">Aktuelle Jobsausschreibungen</string>
     <string name="SStatus">Server Status</string>
     <string name="SPlayer">Spieler Online</string>
     <string name="Splayermax">Max Player</string>
@@ -31,11 +25,18 @@
     <string name="neuladen">Neuladen</string>
     <string name="x">X</string>
     <string name="Dynmap">Dynmap</string>
-    <string name="versuonen">Version</string>
     <string name="Voten">Votelinks</string>
     <string name="Kontack">Kontakt</string>
     <string name="update">Update</string>
     <string name="update_p">Auf Aktualisierungen Prüfen</string>
     <string name="Keine_Netzwerk">Kein Netzwerk</string>
-
+	<string name="Benutzer">Benutzername</string>
+	<string name="habe_vote">Schon gevotet?</string>
+	<string name="teststring">Prüfen</string>
+	<string name="changelog">Changelog</string>
+	<string name="lizenzen_google_gson">Lizenzen Google-Gson</string>
+	<string name="title">Title</string>
+	<string name="date">Date</string>
+	<string name="description">Description</string>
+	<string name="erinnern">Ans Voten Erinnern?</string>
 </resources>

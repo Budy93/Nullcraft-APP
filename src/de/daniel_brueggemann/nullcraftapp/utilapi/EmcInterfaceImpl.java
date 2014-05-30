@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class EmcInterfaceImpl implements EmcInterface
 {
-	public final static String EMCURL = "http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/wartung/Wartung";
+	private final static String EMCURL = "http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/wartung/Wartung";
 	private String URL_wartung;
 	
 	/*
@@ -19,26 +19,27 @@ public class EmcInterfaceImpl implements EmcInterface
 	 * 
 	 * @see de.daniel_brueggemann.nullcraftapp.EmcInterface#EMC_abfrage()
 	 */
+	@SuppressWarnings("rawtypes")
 	public String[] EMC_abfrage()
 	{
 		String[] rückgabe = new String[2];
 		rückgabe[0] = "false";
 		rückgabe[1] = "false";
-		boolean emc_vorhanden=false;
-		boolean grundtest=false;
+		boolean emc_vorhanden = false;
+		boolean grundtest = false;
 		Networkthread Network = new Networkthreadimpl();
 		// /*
 		final HashMap JSOnnot = Network.testServer(EMCURL);
-		GJSON_pruefer pr=new GJSON_pruefer_impl();
-		emc_vorhanden=pr.check_key(JSOnnot, "emc");
-		grundtest=pr.check_key(JSOnnot, "Grund");
+		GJSON_pruefer pr = new GJSON_pruefer_impl();
+		emc_vorhanden = pr.check_key(JSOnnot, "emc");
+		grundtest = pr.check_key(JSOnnot, "Grund");
 		if(JSOnnot != null)
 		{
-			if(emc_vorhanden==true)
+			if(emc_vorhanden == true)
 			{
 				final Object emc = JSOnnot.get("emc");
 				String help = emc.toString();
-				if(grundtest==true)
+				if(grundtest == true)
 				{
 					final Object gruende_json = JSOnnot.get("Grund");
 					String gruende = gruende_json.toString();
@@ -57,7 +58,8 @@ public class EmcInterfaceImpl implements EmcInterface
 				{
 					if(help.equalsIgnoreCase("Abschalten"))
 					{
-						rückgabe[0] = "Die App wurde notbeendet seitens des Entwicklers. \n"+"Es wurde kein Grund definiert \n \n";
+						rückgabe[0] = "Die App wurde notbeendet seitens des Entwicklers. \n"
+						        + "Es wurde kein Grund definiert \n \n";
 						rückgabe[1] = "true";
 						return rückgabe;
 					}
@@ -67,7 +69,7 @@ public class EmcInterfaceImpl implements EmcInterface
 					}
 				}
 			}
-			else if(emc_vorhanden=false)
+			else if(emc_vorhanden == false)
 			{
 				rückgabe[0] = "Es wurde kein Grund definiert";
 				rückgabe[1] = "false";
@@ -76,53 +78,55 @@ public class EmcInterfaceImpl implements EmcInterface
 		}
 		return rückgabe;
 	}
-
+	
+	@SuppressWarnings("rawtypes")
 	@Override
-    public String EMC_wartung(String URL)
-    {
-		URL_wartung=URL;
-		String rückgabe="";
+	public String EMC_wartung(String URL)
+	{
+		URL_wartung = URL;
+		String rückgabe = "";
 		Object wartungO;
-		Networkthread net=new Networkthreadimpl();
-		final HashMap JWartung=net.testServer(URL_wartung);
-		GJSON_pruefer prue=new GJSON_pruefer_impl();
-		boolean wartungda=false;
-		wartungda=prue.check_key(JWartung, "wartung");
-		if(wartungda==true)
+		Networkthread net = new Networkthreadimpl();
+		final HashMap JWartung = net.testServer(URL_wartung);
+		GJSON_pruefer prue = new GJSON_pruefer_impl();
+		boolean wartungda = false;
+		wartungda = prue.check_key(JWartung, "wartung");
+		if(wartungda == true)
 		{
-			wartungO=JWartung.get("wartung");
-			rückgabe=wartungO.toString();
+			wartungO = JWartung.get("wartung");
+			rückgabe = wartungO.toString();
 			return rückgabe;
 		}
 		else
 		{
-			rückgabe="Keine geplant";
+			rückgabe = "Keine geplant";
 			return rückgabe;
 		}
-    }
-
+	}
+	
+	@SuppressWarnings("rawtypes")
 	@Override
-    public int TEM_Update_Ceck(String URL)
-    {
-		String URL_update=URL;
-		//String rückgabe="082271E2";
+	public int TEM_Update_Ceck(String URL)
+	{
+		String URL_update = URL;
+		// String rückgabe="082271E2";
 		Object update;
-		Networkthread net=new Networkthreadimpl();
-		final HashMap JUpdate=net.testServer(URL_update);
-		GJSON_pruefer prue=new GJSON_pruefer_impl();
-		boolean updatekeycheck=false;
-		updatekeycheck=prue.check_key(JUpdate, "is_version");
-		if(updatekeycheck==true)
+		Networkthread net = new Networkthreadimpl();
+		final HashMap JUpdate = net.testServer(URL_update);
+		GJSON_pruefer prue = new GJSON_pruefer_impl();
+		boolean updatekeycheck = false;
+		updatekeycheck = prue.check_key(JUpdate, "is_version");
+		if(updatekeycheck == true)
 		{
-			update=JUpdate.get("is_version");
-			Integer a=Integer.valueOf(update.toString());
-			//int u=a;
+			update = JUpdate.get("is_version");
+			Integer a = Integer.valueOf(update.toString());
+			// int u=a;
 			return a;
 		}
 		else
 		{
-			return 822712;
+			return 822713;
 		}
-    }
+	}
 	
 }

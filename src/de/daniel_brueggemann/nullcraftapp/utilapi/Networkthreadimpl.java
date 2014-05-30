@@ -10,8 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-import android.os.StrictMode;
-
 import com.google.gson.Gson;
 
 /**
@@ -21,9 +19,10 @@ import com.google.gson.Gson;
 public class Networkthreadimpl implements Networkthread
 {
 	String Serverdaten;
+	@SuppressWarnings("rawtypes")
 	public static HashMap send = null;
-	public final String NCAPI="PRIVATE URL";
-	public final String NCServerinfo="PRIVATE URL";
+	private final String NCAPI = "http://api.nullcraft.de/";
+	private final String NCServerinfo = "http://api.nullcraft.de/status.php";
 	
 	/*
 	 * (non-Javadoc)
@@ -32,6 +31,7 @@ public class Networkthreadimpl implements Networkthread
 	 * de.daniel_brueggemann.nullcraftapp.Networkthread#pingserver(java.lang
 	 * .String)
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public HashMap pingserver(String Server)
 	{
@@ -48,13 +48,11 @@ public class Networkthreadimpl implements Networkthread
 		 */
 		{
 			/*
-			if(android.os.Build.VERSION.SDK_INT > 9)
-			{
-				final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-				        .permitNetwork().build();
-				StrictMode.setThreadPolicy(policy);
-			}
-			*/
+			 * if(android.os.Build.VERSION.SDK_INT > 9) { final
+			 * StrictMode.ThreadPolicy policy = new
+			 * StrictMode.ThreadPolicy.Builder() .permitNetwork().build();
+			 * StrictMode.setThreadPolicy(policy); }
+			 */
 			try
 			{
 				final URL url = new URL(
@@ -88,16 +86,15 @@ public class Networkthreadimpl implements Networkthread
 	 * de.daniel_brueggemann.nullcraftapp.Networkthread#testServer(java.lang
 	 * .String)
 	 */
+	@SuppressWarnings("rawtypes")
 	public HashMap testServer(String Server)
 	{
 		/*
-		if(android.os.Build.VERSION.SDK_INT > 9)
-		{
-			final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-			        .permitNetwork().build();
-			StrictMode.setThreadPolicy(policy);
-		}
-		*/
+		 * if(android.os.Build.VERSION.SDK_INT > 9) { final
+		 * StrictMode.ThreadPolicy policy = new
+		 * StrictMode.ThreadPolicy.Builder() .permitNetwork().build();
+		 * StrictMode.setThreadPolicy(policy); }
+		 */
 		try
 		{
 			final URL url = new URL(Server);
@@ -133,6 +130,7 @@ public class Networkthreadimpl implements Networkthread
 	{
 		return Serverdaten;
 	}
+	
 	/*
 	 * public static HashMap retriveHashmap(String Server) { try { final URL url
 	 * = new URL("http://api.iamphoenix.me/get/?server_ip=" + Server); try {
@@ -149,10 +147,11 @@ public class Networkthreadimpl implements Networkthread
 	 * 
 	 * public HashMap getsend() { return send; }
 	 */
-
+	
+	@SuppressWarnings("rawtypes")
 	@Override
-    public HashMap getNullApiServerinfo()
-    {
+	public HashMap getNullApiServerinfo()
+	{
 		try
 		{
 			final URL url = new URL(NCServerinfo);
@@ -176,13 +175,14 @@ public class Networkthreadimpl implements Networkthread
 		}
 		return null;
 	}
-
+	
+	@SuppressWarnings("rawtypes")
 	@Override
-    public HashMap getNullApiOtherinfo(String URLparameter)
-    {
+	public HashMap getNullApiOtherinfo(String URLparameter)
+	{
 		try
 		{
-			final URL url = new URL(NCAPI+URLparameter);
+			final URL url = new URL(NCAPI + URLparameter);
 			try
 			{
 				/*
@@ -209,7 +209,7 @@ public class Networkthreadimpl implements Networkthread
 			e.printStackTrace();
 		}
 		return null;
-    }
+	}
 }
 /*
  * class Networkcalltask extends AsyncTask<String, Void, HashMap> { private
