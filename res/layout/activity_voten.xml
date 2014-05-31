@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg_affe"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/zurucke_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="99dp"
+        android:text="@string/zuruck" />
+
+    <TextView
+        android:id="@+id/votelinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/habenvotefrage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/leer"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/eingabebenuzt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/zurucke_vote"
+        android:layout_alignTop="@+id/prue_bt"
+        android:layout_toLeftOf="@+id/prue_bt"
+        android:background="#ffffff"
+        android:ems="10"
+        android:enabled="true"
+        android:hint="@string/Benutzer"
+        android:scrollHorizontally="true"
+        android:textSize="@dimen/activity_vertical_margin" />
+
+    <TextView
+        android:id="@+id/habenvotefrage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/eingabebenuzt"
+        android:layout_alignLeft="@+id/eingabebenuzt"
+        android:text="@string/habe_vote"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/prue_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/zurucke_vote"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22dp"
+        android:text="@string/teststring" />
+
+</RelativeLayout>

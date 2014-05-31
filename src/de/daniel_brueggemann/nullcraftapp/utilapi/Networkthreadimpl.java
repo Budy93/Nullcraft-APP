@@ -13,6 +13,7 @@ import java.util.HashMap;
 import com.google.gson.Gson;
 
 /**
+ * Zentrale Implementierung des Interaces mit Verbindung zur Nullcraft API
  * @author Daniel Brüggemann
  *
  */
@@ -21,8 +22,8 @@ public class Networkthreadimpl implements Networkthread
 	String Serverdaten;
 	@SuppressWarnings("rawtypes")
 	public static HashMap send = null;
-	private final String NCAPI = "http://api.nullcraft.de/";
-	private final String NCServerinfo = "http://api.nullcraft.de/status.php";
+	private final String NCAPI = "ZENSIERT";
+	private final String NCServerinfo = "ZENSIERT";
 	
 	/*
 	 * (non-Javadoc)

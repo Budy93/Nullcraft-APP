@@ -81,7 +81,7 @@ public class MainActivity extends Activity implements OnClickListener
 	private static long speicher = 0;
 	private static long timeend = 0;
 	public static final long sec = 1000000000;
-	public final int versionsnr = 822713;
+	public final int versionsnr = 822714;
 	public CountDownTimer counddown;
 	private static int mId = 0;
 	public static CheckBox darferinnern;
@@ -461,13 +461,13 @@ public class MainActivity extends Activity implements OnClickListener
 			 * onClick(DialogInterface dialog, int which) { dialog.cancel(); }
 			 * }); alertDialog.show();
 			 */
-			String versiontext = "Version: Beta 0.8.2.3.E2" + "\n"
+			String versiontext = "Version: Beta 0.8.2.4.E1" + "\n"
 			        + "Codename: Minimalistin" + "\n" + "Autor: Budy93" + "\n"
 			        + "E-mail: dev@daniel-brueggemann.de";
 			diaglogesp("Version", versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Beta 0.8.2.3.E2" + "\n"
+			        "Version: Beta 0.8.2.4.E1" + "\n"
 			                + "Codename: Minimalistin" + "\n" + "Autor: Budy93",
 			        Toast.LENGTH_LONG).show();
 		}
@@ -808,6 +808,7 @@ public class MainActivity extends Activity implements OnClickListener
 		// JSON.get("status").equals("false")
 		if(nullapion == false)
 		{
+			//Entfernung Phonixapi ab nächster Version
 			if(statustest == true)
 			{
 				if(JSON == null || JSON.get("status").equals("false"))
@@ -958,7 +959,7 @@ public class MainActivity extends Activity implements OnClickListener
 	}
 	
 	/**
-	 * Erstellt einen Countdown, der alle 24 eine Notifikation abschickt.
+	 * Erstellt einen Countdown, der alle 24 eine Notifikation abschickt. Nicht genutz, wird später entfernt
 	 * @deprecated
 	 */
 	@SuppressWarnings("unused")
@@ -995,7 +996,7 @@ public class MainActivity extends Activity implements OnClickListener
 								}
 								if(android.os.Build.VERSION.SDK_INT >= 16)
 								{
-									createNotification();
+									//createNotification();
 								}
 							}
 						};
@@ -1008,11 +1009,13 @@ public class MainActivity extends Activity implements OnClickListener
 		t.start();
 	}
 	
+	/*
 	/**
 	 * Erstellt eine Notification für den Nutzer
 	 * Nur Kompertibel mit Android API 16
 	 * @deprecated
 	 */
+	/*
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private void createNotification()
 	{
@@ -1053,9 +1056,10 @@ public class MainActivity extends Activity implements OnClickListener
 		mNotificationManager.notify(mId, mBuilder.build());
 		mId++;
 	}
+	*/
 	
 	/**
-	 * Restart der APP
+	 * Restart der APP mitteilung, nur für sonderfälle gedacht, derzeit nicht genutz
 	 * @param Title Titel der Dialogmeldung
 	 * @param texte Text der Dialogemeldung
 	 * @deprecated

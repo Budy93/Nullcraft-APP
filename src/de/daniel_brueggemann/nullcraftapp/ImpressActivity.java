@@ -55,7 +55,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button) findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Beta 0.8.2.3.E2"
+		String Text = "Version: Beta 0.8.2.4.E1"
 		        + "\n"
 		        + "Codename: Minimalistin"
 		        + "\n"

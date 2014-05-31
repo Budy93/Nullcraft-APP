@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/vote_hbmenue" android:title="@string/haupt"></item>
+    <item android:id="@+id/vote_impressum" android:title="@string/impressum"></item>
+    <item android:id="@+id/vote_dyn" android:title="@string/Dynmap"></item>
+    <item android:id="@+id/vote_beenden" android:title="@string/beenden"></item>
+    <item android:id="@+id/item1" android:checkable="true" android:title="@string/ankuendigung" android:checked="false"></item>
+    
+
+</menu>
