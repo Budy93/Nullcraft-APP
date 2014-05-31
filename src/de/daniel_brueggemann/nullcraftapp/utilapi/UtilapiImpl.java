@@ -16,7 +16,7 @@ import android.os.Environment;
 import android.util.Log;
 
 /**
- * Implementierung der Utilapi. Für die Nullapp
+ * Implementierung der Utilapi. Integriert auch die Logfunktion durch Filewriter
  * @author Daniel Brüggemann
  *
  */

@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Erstellt den Alarm nach den Restart
+ * Empfäng das Bootsignal vom Android OS-System
  * @author Daniel Brüggemann
  *
  */

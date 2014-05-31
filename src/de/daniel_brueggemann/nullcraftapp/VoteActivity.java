@@ -32,6 +32,8 @@ import de.daniel_brueggemann.nullcraftapp.utilapi.Networkthreadimpl;
 import de.daniel_brueggemann.nullcraftapp.utilapi.votealarmReciver;
 
 /**
+ * Diese Aktivity wird durch den Notifya gestartet und ermöglich prüfung der Votes, ist eine
+ * übergangslösung
  * @author Daniel Brüggemann
  *
  */

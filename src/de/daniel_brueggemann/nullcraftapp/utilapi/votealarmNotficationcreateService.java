@@ -17,7 +17,7 @@ import de.daniel_brueggemann.nullcraftapp.R;
 import de.daniel_brueggemann.nullcraftapp.VoteActivity;
 
 /**
- * Servic der den User die Erinnerung an den Vote schickt.
+ * Service der den User die Erinnerung an den Vote schickt
  * @author Daniel Brüggemann
  *
  */

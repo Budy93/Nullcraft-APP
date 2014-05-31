@@ -6,7 +6,7 @@ package de.daniel_brueggemann.nullcraftapp.utilapi;
 import java.util.HashMap;
 
 /**
- * Utilapi Interface, übernimmt kleine Aufgaben, die öfter genutz werden. Für die Nullapp
+ * Utilapi Interface, übernimmt kleine Aufgaben, die öfter genutz werden. Integriert auch die Logfunktion
  * @author Daniel Brüggemann
  *
  */

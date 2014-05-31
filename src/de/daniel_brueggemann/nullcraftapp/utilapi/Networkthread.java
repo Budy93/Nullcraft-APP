@@ -6,6 +6,7 @@ package de.daniel_brueggemann.nullcraftapp.utilapi;
 import java.util.HashMap;
 
 /**
+ * Netzwerkthread Interface, stellt die Kommunikation sicher.
  * @author Daniel Brüggemann
  *
  */

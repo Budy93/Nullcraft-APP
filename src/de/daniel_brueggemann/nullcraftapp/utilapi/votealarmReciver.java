@@ -14,7 +14,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 /**
- * Empfängt den Alarmreciviver und setzt den Broadcast
+ * Empfängt den Alarmreciviver und starte oder Beendet den Alarmreciver
  * @author Daniel Brüggemann
  *
  */
