@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.daniel_brueggemann.nullcraftapp"
     android:versionCode="12"
-    android:versionName="Beta 0.8.2.4.E1" android:installLocation="auto">
+    android:versionName="Beta 0.8.2.4.E2" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="20" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>

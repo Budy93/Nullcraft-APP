@@ -22,8 +22,9 @@ public class Networkthreadimpl implements Networkthread
 	String Serverdaten;
 	@SuppressWarnings("rawtypes")
 	public static HashMap send = null;
-	private final String NCAPI = "No Link";
-	private final String NCServerinfo = "No Link";
+	private final String NCAPI = "Zensiert";
+	private final String NCServerinfo = "Zensiert";
+	//private final String NCServerinfo = "Zensiert";
 	
 	/*
 	 * (non-Javadoc)

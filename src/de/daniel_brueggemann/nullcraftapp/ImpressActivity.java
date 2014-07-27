@@ -55,9 +55,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button) findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Beta 0.8.2.4.E1"
+		String Text = "Version: Beta 0.8.2.4.E2"
 		        + "\n"
-		        + "Codename: Minimalistin"
+		        + "Codename: Iron"
 		        + "\n"
 		        + "Autor: Budy93"
 		        + "\n"
@@ -198,6 +198,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		else if(v == change)
 		{
 			String changtext;
+			String changetext_Beta_0824E2;
 			String changetext_Beta_0823E1;
 			String changetext_Beta_0822E2;
 			String changetext_Beta_08822E1;
@@ -209,6 +210,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 			String changtext_Alpha07;
 			String changtext_Alpha06;
 			String changtext_Alpha05;
+			changetext_Beta_0824E2="Update Beta 0.8.2.4.E1(822714)\n===Changelog===\nVersion: Beta 0.8.2.4.E1\nCodename: Iron\nChanges:\n*\u00C4nderung an Zugriff Schnittstellen.\n*Entfernung alter API Schnittstellen.\n*Weitere Fehlerabfangungen integriert (I love Try and Catche).\n!Fehlerbehebung in der netzwerkthreadSetGUI zur Nullpointexception f\u00FChrte\n!Fehlerbehebung in Votemen\u00FC.\n\n";
 			changetext_Beta_0823E1 = "Update Beta 0.8.2.3.E2(822713)\n===Changelog===\nVersion: Beta 0.8.2.3.E2\nCodename: Minimalistin\nChanges:\n!Falsche Zurordnungen entfernt\n!Fehler beim Update benachrichtiger behoben\n*Einf\u00FChrung neuer Api Schnittstellen\n*Ein Voteerinnere, der ein alle 24h ans Voten erinnert.\n*Checkbox die explezit um erlaubtnis dazu fragt.\n*Neue Aktivity, dass erlaubt zu Pr\u00FCfen, ob ein bestimmter Spieler gevotet hat.\n*Voteservice und Reciver\n*Die Dynmap \u00F6ffnet sich nun erst, wenn Internet vorhanden ist.\n\n";
 			changetext_Beta_0822E2 = "Update Beta 0.8.2.2.E2\n===Changelog===\nVersion: Beta 0.8.2.2.E2\nCodename: Rock\nChanges:\n!Fehlerbehebung die bei Fehlenen Netz zum Absturtz der App f\u00FChrte\n*Vorbereitungen f\u00FCr neue Schnittstellen\n\n";
 			changetext_Beta_08822E1 = "Update Beta 0.8.2.2.E1\n===Changelog===\nVersion: Beta 0.8.2.2.E1\nCodename: Vanny.Rock\nChanges:\n*Einf\u00FChrung eines Hintergrundbildes.\n*Einf\u00FChrung einer Option zum Reinen ansehen der Votelinks, per Button dann online.\n*Einf\u00FChrung des Men\u00FCpunktes VOTEN.\n*Es gibt nun ein Wartungsinformationssystem\n*Beseitigung der letzten Strickmode Policys, die \u00FCbersehen wurden.\n*Es wurden ein besserer Schutz gegen die Nullpointexception gemacht.\n*Es kann nun gepr\u00FCft werden, ob eine neue Version verf\u00FCgbar ist.\n*Einf\u00FChrung mehrere neben l\u00E4ufiger Threads.\n*Einf\u00FChrung des Men\u00FCpunktes auf Aktualisierungen Pr\u00FCfen in Mainmen\u00FC.\n!Fehlerbehebung bei der MODT und Version \u00FCberlagerten.\n!Latenz wird bei offline nun 0\n\n";
@@ -289,7 +291,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 			        + "\n"
 			        + "* MODT Version von Nullcraft Link zur Dynmap Autolink zur Voteseite"
 			        + "\n" + "\n" + "----------------" + "\n" + "\n";
-			changtext = changetext_Beta_0823E1 + changetext_Beta_0822E2
+			changtext = changetext_Beta_0823E1+changetext_Beta_0823E1 + changetext_Beta_0822E2
 			        + changetext_Beta_08822E1 + changetext_Beta_082
 			        + changetext_Beta081 + changtext_Alpha071E3
 			        + changtext_Alpha071E2 + changtext_Alpha071E1

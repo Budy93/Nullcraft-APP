@@ -1,12 +1,24 @@
-Nullcraft-APP
+﻿Nullcraft-APP
 =============
 
 App für den Server Nullcraft, verändern des Codes ist nicht gestattet, verwendet des codes ist unter klarer Namensnennung
-des Autors und dieses Projektes im Impressum erlaubt. 
+des Autors und dieses Projektes im Impressum erlaubt.
 Autor: Daniel Brüggemann, (Budy93)
 
-Die aktuelle Version ist Alpha v.0.8.0.E2
+Die aktuelle Version ist Beta v.0.8.2.4.E2
 mit folgenden Changelog:
+Update Beta 0.8.2.4.E2(822714)
+===Changelog===
+Version: Beta 0.8.2.4.E2
+Codename: Iron
+Changes:
+*Änderung an Zugriff Schnittstellen.
+*Entfernung alter API Schnittstellen.
+*Weitere Fehlerabfangungen integriert (I love Try and Catche).
+!Fehlerbehebung in der netzwerkthreadSetGUI zur Nullpointexception führte
+!Fehlerbehebung in Votemenü.
+
+vorheriges Updates:
 
 Update Beta 0.8.2.3.E2(822713)
 ===Changelog===
@@ -21,8 +33,6 @@ Changes:
 *Neue Aktivity, dass erlaubt zu Prüfen, ob ein bestimmter Spieler gevotet hat.
 *Voteservice und Reciver
 *Die Dynmap öffnet sich nun erst, wenn Internet vorhanden ist.
-
-vorheriges Updates:
 
 Update Beta 0.8.2.2.E2(822712)
 ===Changelog===
