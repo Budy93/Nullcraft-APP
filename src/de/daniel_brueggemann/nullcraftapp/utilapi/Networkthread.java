@@ -16,6 +16,7 @@ public interface Networkthread
 	 * Fragt alle Wichtigen Daten des Servers ab.
 	 * @param Server String der Server URL
 	 * @return HashMap mit JSON objekt
+	 * @deprecated
 	 */
 	@SuppressWarnings("rawtypes")
 	public HashMap pingserver(String Server);

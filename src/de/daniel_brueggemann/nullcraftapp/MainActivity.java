@@ -2,27 +2,18 @@ package de.daniel_brueggemann.nullcraftapp;
 
 import java.util.HashMap;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -245,42 +236,26 @@ public class MainActivity extends Activity implements OnClickListener
 	{
 		boolean ok = false;
 		ok = sicherung(5);
-		/*
-		 * timestart = System.nanoTime(); if(speicher == 0 & timeend == 0) { ok
-		 * = true; timeend = timestart; } else if(timeend != 0) { speicher =
-		 * timestart - timeend; speicher = speicher / sec; if(speicher < 5) { //
-		 * diaglogesp("PFFS-SYSTEM",
-		 * "Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke"
-		 * );
-		 * 
-		 * Toast.makeText( this,
-		 * "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke"
-		 * , Toast.LENGTH_SHORT).show();
-		 * 
-		 * ok = false; } else { timeend = timestart; ok = true; } }
-		 */
 		if(ok == true)
 		{
 			Runnable r = new Runnable()
 			{
-				@Override
+				@SuppressWarnings("rawtypes")
+                @Override
 				public void run()
 				{
 					Networkthread Network = new Networkthreadimpl();
 					final EmcInterface emc = new EmcInterfaceImpl();
 					// String[] emc_text = new String[2];
 					final String[] emc_text = emc.EMC_abfrage();
-					@SuppressWarnings("rawtypes")
-					final HashMap JSON = Network.pingserver(ServerURL);
+					//final HashMap JSON = Network.pingserver(ServerURL);
 					final String wrtext = emc.EMC_wartung(wartungsURL);
-					@SuppressWarnings("rawtypes")
 					final HashMap Nullapi = Network.getNullApiServerinfo();
 					runOnUiThread(new Runnable()
 					{
 						public void run()
 						{
-							netzwerkthreadSetGUI(emc, emc_text, JSON, wrtext,
-							        Nullapi);
+							netzwerkthreadSetGUI(emc, emc_text, wrtext, Nullapi);
 						}
 					});
 				}
@@ -345,15 +320,6 @@ public class MainActivity extends Activity implements OnClickListener
 			case R.id.Updat:
 				boolean ok = false;
 				ok = sicherung(5);
-				/*
-				 * timestart = System.nanoTime(); if(speicher == 0 & timeend ==
-				 * 0) { ok = true; timeend = timestart; } else if(timeend != 0)
-				 * { speicher = timestart - timeend; speicher = speicher / sec;
-				 * if(speicher < 5) { Toast.makeText( this,
-				 * "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden",
-				 * Toast.LENGTH_LONG).show(); ok = false; } else { timeend =
-				 * timestart; ok = true; } }
-				 */
 				if(ok == true)
 				{
 					Runnable r = new Runnable()
@@ -371,18 +337,18 @@ public class MainActivity extends Activity implements OnClickListener
 									if(v_test == versionsnr)
 									{
 										// String a=""+v_test;
-										diaglogesp("Update nicht verfügbar",
+										createmessage("Update nicht verfügbar",
 										        "Es ist derzeit kein Update verfügbar");
 									}
 									else if(v_test > versionsnr)
 									{
 										// String a=""+v_test;
-										diaglogesp("Update verfügbar",
+										createmessage("Update verfügbar",
 										        "Es steht ein Update zur verfügung, bitte update deine Version");
 									}
 									else
 									{
-										diaglogesp("Test Version?",
+										createmessage("Test Version?",
 										        "Deine Version ist zu neu, nutzt du eine Testversion?");
 									}
 								}
@@ -445,7 +411,7 @@ public class MainActivity extends Activity implements OnClickListener
 			}
 			else
 			{
-				diaglogesp("Kein Netzwerk",
+				createmessage("Kein Netzwerk",
 				        "Kann ich leider nicht machen, du hast kein Netz");
 			}
 		}
@@ -461,13 +427,13 @@ public class MainActivity extends Activity implements OnClickListener
 			 * onClick(DialogInterface dialog, int which) { dialog.cancel(); }
 			 * }); alertDialog.show();
 			 */
-			String versiontext = "Version: Beta 0.8.2.4.E1" + "\n"
-			        + "Codename: Minimalistin" + "\n" + "Autor: Budy93" + "\n"
+			String versiontext = "Version: Beta 0.8.2.4.E2" + "\n"
+			        + "Codename: Iron" + "\n" + "Autor: Budy93" + "\n"
 			        + "E-mail: dev@daniel-brueggemann.de";
-			diaglogesp("Version", versiontext);
+			createmessage("Version", versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Beta 0.8.2.4.E1" + "\n"
+			        "Version: Beta 0.8.2.4.E2" + "\n"
 			                + "Codename: Minimalistin" + "\n" + "Autor: Budy93",
 			        Toast.LENGTH_LONG).show();
 		}
@@ -513,17 +479,6 @@ public class MainActivity extends Activity implements OnClickListener
 		{
 			boolean ok = false;
 			ok = sicherung(5);
-			/*
-			 * timestart = System.nanoTime(); if(speicher == 0 & timeend == 0) {
-			 * ok = true; timeend = timestart; } else if(timeend != 0) {
-			 * speicher = timestart - timeend; speicher = speicher / sec;
-			 * if(speicher < 5) { Toast.makeText( this,
-			 * "PFFS-SYSTEM: Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke"
-			 * , Toast.LENGTH_SHORT).show(); // diaglogesp("PFFS-SYSTEM",
-			 * "Es kann nur alle 5sek neugeladen werden, diese Meldung erscheint auch beim jeden neustart der App bitte dann 5sek warten. Danke"
-			 * ); ok = false; } else { timeend = timestart; ok = true; } } //
-			 * todo
-			 */
 			if(ok == true)
 			{
 				Runnable r = new Runnable()
@@ -541,18 +496,18 @@ public class MainActivity extends Activity implements OnClickListener
 								if(v_test == versionsnr)
 								{
 									// String a=""+v_test;
-									diaglogesp("Update nicht verfügbar",
+									createmessage("Update nicht verfügbar",
 									        "Es ist derzeit kein Update verfügbar");
 								}
 								else if(v_test > versionsnr)
 								{
 									// String a=""+v_test;
-									diaglogesp("Update verfügbar",
+									createmessage("Update verfügbar",
 									        "Es steht ein Update zur verfügung, bitte update deine Version");
 								}
 								else
 								{
-									diaglogesp("Test Version?",
+									createmessage("Test Version?",
 									        "Deine Version ist zu neu, nutzt du eine Testversion?");
 								}
 							}
@@ -560,7 +515,14 @@ public class MainActivity extends Activity implements OnClickListener
 					}
 				};
 				Thread updatecheck = new Thread(r);
-				updatecheck.start();
+				try
+                {
+	                updatecheck.start();
+                }
+                catch (Exception e)
+                {
+	                createmessage("Fehler: 6","Fehler in der Updateroutine"+e.toString());
+                }
 			}
 		}
 		else if(v == darferinnern)
@@ -644,7 +606,7 @@ public class MainActivity extends Activity implements OnClickListener
 	 * @param Title Titel der Dialogmeldung
 	 * @param texte Text der Dialogemeldung
 	 */
-	private void diaglogesp(String Title, String texte)
+	private void createmessage(String Title, String texte)
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
 		// final AlertDialog alertDialog2 = new AlertDialog.Builder(this)
@@ -759,15 +721,11 @@ public class MainActivity extends Activity implements OnClickListener
 	 */
 	@SuppressWarnings("rawtypes")
 	private void netzwerkthreadSetGUI(final EmcInterface emc,
-	        final String[] emc_text, final HashMap JSON, final String wrtext,
+	        final String[] emc_text, final String wrtext,
 	        final HashMap Nullapi)
 	{
 		if(emc_text[1].equals("true"))
 		{
-			/*
-			 * Toast.makeText(this, "Notabschaltung", Toast.LENGTH_LONG)
-			 * .show();
-			 */
 			Bundle Transfer = new Bundle();
 			CPRightstext.setTextColor(Color.CYAN);
 			CPRightstext.setText(emc.toString());
@@ -798,16 +756,33 @@ public class MainActivity extends Activity implements OnClickListener
 		 * Testurl.setText("Developer: Budy93, ©Berlin 2014" ); } }
 		 */
 		GJSON_pruefer pr = new GJSON_pruefer_impl();
-		boolean statustest = false;
-		boolean errortest = false;
+		//boolean statustest = false;
+		//boolean errortest = false;
 		boolean nullapion = false;
-		statustest = pr.check_key(JSON, "status");
-		errortest = pr.check_key(JSON, "error");
-		nullapion = pr.check_key(Nullapi, "status");
+		//statustest = pr.check_key(JSON, "status");
+		//errortest = pr.check_key(JSON, "error");
+		try
+        {
+	        nullapion = pr.check_key(Nullapi, "status");
+        }
+        catch (Exception fehlerapi)
+        {
+        	createmessage("Fehler: 600",
+			        "Fehler in Api Prüfmethode" + fehlerapi.toString());
+        }
 		// JSON == null || JSON.containsKey("error") ||
 		// JSON.get("status").equals("false")
 		if(nullapion == false)
 		{
+			text.setTextColor(Color.RED);
+			text.setText("Offline");
+			Player.setText("-");
+			Playermay.setText("-");
+			Modt.setText("");
+			Serverversion.setText("-");
+			Latenz.setText("-");
+			wartungnews.setText(wrtext);
+			/*
 			//Entfernung Phonixapi ab nächster Version
 			if(statustest == true)
 			{
@@ -840,6 +815,7 @@ public class MainActivity extends Activity implements OnClickListener
 					wartungnews.setText(wrtext);
 				}
 			}
+			
 			else if(errortest == true)
 			{
 				text.setTextColor(Color.RED);
@@ -851,22 +827,93 @@ public class MainActivity extends Activity implements OnClickListener
 				Latenz.setText("-");
 				wartungnews.setText(wrtext);
 			}
+			*/
 		}
-		else if(nullapion == true)
+		else
 		{
-			boolean online = false;
-			boolean spieler = false;
-			boolean spielermax = false;
-			boolean modt = false;
-			boolean pingsystem = false;
-			boolean versiona = false;
+			boolean online;
+            boolean spieler;
+            boolean spielermax;
+            boolean modt;
+            boolean pingsystem;
+            boolean versiona;
+			online = false;
+			spieler = false;
+			spielermax = false;
+			modt = false;
+			pingsystem = false;
+			versiona = false;
+			/*
 			online = pr.check_key(Nullapi, "status");
 			spieler = pr.check_key(Nullapi, "players");
 			spielermax = pr.check_key(Nullapi, "slots");
 			modt = pr.check_key(Nullapi, "motd");
 			pingsystem = pr.check_key(Nullapi, "latency");
 			versiona = pr.check_key(Nullapi, "version");
-			if(Nullapi == null || Nullapi.get("status").equals("false"))
+			*/
+			try
+			{
+				online = pr.check_key(Nullapi, "status");
+			}
+			catch (Exception eonline)
+			{
+				online = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + eonline.toString());
+			}
+			try
+			{
+				spieler = pr.check_key(Nullapi, "players");
+			}
+			catch (Exception espieler)
+			{
+				spieler = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + espieler.toString());
+			}
+			try
+			{
+				spielermax = pr.check_key(Nullapi, "slots");
+			}
+			catch (Exception emax)
+			{
+				spielermax = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + emax.toString());
+			}
+			try
+			{
+				modt = pr.check_key(Nullapi, "motd");
+			}
+			catch (Exception emodt)
+			{
+				modt = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + emodt.toString());
+			}
+			try
+			{
+				pingsystem = pr.check_key(Nullapi, "latency");
+			}
+			catch (Exception eping)
+			{
+				pingsystem = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + eping.toString());
+			}
+			try
+			{
+				versiona = pr.check_key(Nullapi, "version");
+			}
+			catch (Exception ever)
+			{
+				versiona = false;
+				createmessage("Fehler: 604",
+				        "Fehler in Hashprüfmethode " + ever.toString());
+			}
+			
+			// || Nullapi.get("status").equals("false")
+			if(Nullapi == null || Nullapi.get("status").equals(false))
 			{
 				text.setTextColor(Color.RED);
 				text.setText("Offline");
@@ -877,11 +924,21 @@ public class MainActivity extends Activity implements OnClickListener
 				Latenz.setText("-");
 				wartungnews.setText(wrtext);
 			}
-			else if(online == true && spieler == true && spielermax == true
+			// 
+			/*
+			else if(online == true &&spieler == true && spielermax == true
 			        && modt == true && pingsystem == true && versiona == true)
 			{
-				text.setTextColor(Color.GREEN);
-				text.setText("Online");
+				if(Nullapi.get("status").equals("true"))
+				{
+					text.setTextColor(Color.BLUE);
+					text.setText("Online");
+				}
+				else
+				{
+					text.setTextColor(Color.GRAY);
+					text.setText("Offline");
+				}
 				final Object PlayerOI = Nullapi.get("players");
 				Player.setText(PlayerOI.toString());
 				final Object PlayerMax = Nullapi.get("slots");
@@ -894,10 +951,24 @@ public class MainActivity extends Activity implements OnClickListener
 				Latenz.setText(Letente.toString());
 				wartungnews.setText(wrtext);
 			}
+			*/
 			else
 			{
-				text.setTextColor(Color.GREEN);
+				/*
+				text.setTextColor(Color.YELLOW);
 				text.setText("Online");
+				*/
+				wartungnews.setText(wrtext);
+				if(Nullapi.get("status").equals(true))
+				{
+					text.setTextColor(Color.GREEN);
+					text.setText("Online");
+				}
+				else
+				{
+					text.setTextColor(Color.RED);
+					text.setText("Offline");
+				}
 				if(spieler == true)
 				{
 					final Object PlayerOI = Nullapi.get("players");
@@ -945,6 +1016,7 @@ public class MainActivity extends Activity implements OnClickListener
 				}
 			}
 		}
+		/*
 		else
 		{
 			text.setTextColor(Color.RED);
@@ -956,6 +1028,7 @@ public class MainActivity extends Activity implements OnClickListener
 			Latenz.setText("-");
 			wartungnews.setText(wrtext);
 		}
+		*/
 	}
 	
 	/**
@@ -991,7 +1064,7 @@ public class MainActivity extends Activity implements OnClickListener
 								if(android.os.Build.VERSION.SDK_INT < 16)
 								{
 									dialoge_vote();
-									diaglogesp("VOTEN",
+									createmessage("VOTEN",
 									        "Bitte vergiss nicht heute zu voten");
 								}
 								if(android.os.Build.VERSION.SDK_INT >= 16)
