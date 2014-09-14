@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements OnClickListener
 	public static TextView Serverversion;
 	public static Button Beenden;
 	public static Button Impressum;
-	private final static String ServerURL = "bau.nullcraft.de";
+	//private final static String ServerURL = "bau.nullcraft.de";
 	public static TextView Latenz;
 	private final static String wartungsURL = "http://daniel-brueggemann.de/minecraft/dev/Nullcraftapp/wartung/Wartung";
 	public static TextView CPRightstext;
@@ -67,14 +67,14 @@ public class MainActivity extends Activity implements OnClickListener
 	// public final int aktuelle_version = 822713;
 	public final String Votelinksmsg = "http://craftlist.de/vote/3" + "\n"
 	        + "\n" + "http://www.minecraft-serverlist.net/vote/12186" + "\n"
-	        + "\n" + "http://minecraft-server.eu/vote/index/80600";
+	        + "\n" + "http://minecraft-server.eu/vote/index/80600"+"\n"+"\n"+"http://www.planetminecraft.com/server/nullcraft-network/vote/";
 	private static long timestart = 0;
 	private static long speicher = 0;
 	private static long timeend = 0;
 	public static final long sec = 1000000000;
-	public final int versionsnr = 822714;
+	public final int versionsnr = 822716;
 	public CountDownTimer counddown;
-	private static int mId = 0;
+	//private static int mId = 0;
 	public static CheckBox darferinnern;
 	public SharedPreferences.Editor editor;
 	public votealarmReciver alarm = new votealarmReciver();
@@ -315,7 +315,10 @@ public class MainActivity extends Activity implements OnClickListener
 				startActivity(in);
 				return true;
 			case R.id.Voten_menu:
-				dialoge_vote();
+				Intent voteredirect = new Intent(MainActivity.this,
+				        VoteActivity.class);
+				startActivity(voteredirect);
+				//dialoge_vote();
 				return true;
 			case R.id.Updat:
 				boolean ok = false;
@@ -412,7 +415,7 @@ public class MainActivity extends Activity implements OnClickListener
 			else
 			{
 				createmessage("Kein Netzwerk",
-				        "Kann ich leider nicht machen, du hast kein Netz");
+				        "Bitte versuche es erneut");
 			}
 		}
 		else if(v == Version)
@@ -427,14 +430,14 @@ public class MainActivity extends Activity implements OnClickListener
 			 * onClick(DialogInterface dialog, int which) { dialog.cancel(); }
 			 * }); alertDialog.show();
 			 */
-			String versiontext = "Version: Beta 0.8.2.4.E2" + "\n"
-			        + "Codename: Iron" + "\n" + "Autor: Budy93" + "\n"
-			        + "E-mail: dev@daniel-brueggemann.de";
-			createmessage("Version", versiontext);
+			String versiontext = "Version: Beta 0.8.2.5.E1("+versionsnr+")" + "\n"
+			        + "Codename: Iron.Flattervieh" + "\n" + "Autor: Budy93" + "\n"
+			        + "E-mail: dev@daniel-brueggemann.de" +"\n"+"Bugmeldung an: https://github.com/Budy93/Nullcraft-APP/issues"+"\n"+"Sourcode ist hier Verfügbar: https://github.com/Budy93/Nullcraft-APP";
+			dialoge_version(versiontext);
 			Toast.makeText(
 			        this,
-			        "Version: Beta 0.8.2.4.E2" + "\n"
-			                + "Codename: Minimalistin" + "\n" + "Autor: Budy93",
+			        "Version: Beta 0.8.2.5.E1("+versionsnr+")" +"\n"
+			                + "Codename: Iron.Flattervieh" + "\n" + "Autor: Budy93",
 			        Toast.LENGTH_LONG).show();
 		}
 		else if(v == Impressum)
@@ -543,6 +546,7 @@ public class MainActivity extends Activity implements OnClickListener
 			else
 			{
 				alarm.cancelAlarm(this);
+				diaglorestart();
 				// diaglorestart();
 				// myTimer.cancel;
 				// counddown.cancel();
@@ -1135,9 +1139,7 @@ public class MainActivity extends Activity implements OnClickListener
 	 * Restart der APP mitteilung, nur für sonderfälle gedacht, derzeit nicht genutz
 	 * @param Title Titel der Dialogmeldung
 	 * @param texte Text der Dialogemeldung
-	 * @deprecated
 	 */
-	@SuppressWarnings("unused")
 	private void diaglorestart()
 	{
 		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
@@ -1148,7 +1150,7 @@ public class MainActivity extends Activity implements OnClickListener
 		alertDialog2.setTitle("Restart");
 		
 		// Setting Dialog Message
-		alertDialog2.setMessage("Die APP muss nun neu gestart werden");
+		alertDialog2.setMessage("Bitte starten sie ihr gerät neu, um die Einstellungen zu übernehmen.");
 		
 		// Setting Positive "Yes" Btn
 		alertDialog2.setPositiveButton("OK",
@@ -1158,6 +1160,44 @@ public class MainActivity extends Activity implements OnClickListener
 			        {
 				        dialog.cancel();
 				        ActivityRegistry.finishAll();
+			        }
+		        });
+		alertDialog2.show();
+	}
+	
+	/**
+	 * Gibt einen Alertdialoge mit den Votelinks aus.
+	 */
+	private void dialoge_version(String versin)
+	{
+		final SpannableString m = new SpannableString(versin);
+		Linkify.addLinks(m, Linkify.WEB_URLS);
+		
+		AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(this);
+		final TextView message = new TextView(this);
+		message.setText(m);
+		message.setMovementMethod(LinkMovementMethod.getInstance());
+		alertDialog2.setTitle("Version");
+		// alertDialog2.setMessage(m);
+		alertDialog2.setView(message);
+		alertDialog2.setPositiveButton("Bugmelden (Weiterleitung auf Github)",
+		        new DialogInterface.OnClickListener()
+		        {
+			        public void onClick(DialogInterface dialog, int which)
+			        {
+				        final Intent intent = new Intent(Intent.ACTION_VIEW);
+				        intent.setData(Uri
+				                .parse("https://github.com/Budy93/Nullcraft-APP/issues"));
+				        startActivity(intent);
+			        }
+		        });
+		// Setting Negative "NO" Btn
+		alertDialog2.setNegativeButton("Zurück zur APP",
+		        new DialogInterface.OnClickListener()
+		        {
+			        public void onClick(DialogInterface dialog, int which)
+			        {
+				        dialog.cancel();
 			        }
 		        });
 		alertDialog2.show();

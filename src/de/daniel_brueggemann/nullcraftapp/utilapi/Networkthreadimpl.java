@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Zentrale Implementierung des Interaces mit Verbindung zur Nullcraft API
@@ -22,9 +23,9 @@ public class Networkthreadimpl implements Networkthread
 	String Serverdaten;
 	@SuppressWarnings("rawtypes")
 	public static HashMap send = null;
-	private final String NCAPI = "Zensiert";
-	private final String NCServerinfo = "Zensiert";
-	//private final String NCServerinfo = "Zensiert";
+	private final String NCAPI = "*ZENSIERT*";
+	private final String NCServerinfo = "*ZENSIERT*";
+	//private final String NCServerinfo = "*ZENSIERT*";
 	
 	/*
 	 * (non-Javadoc)
@@ -66,7 +67,14 @@ public class Networkthreadimpl implements Networkthread
 					final String data = reader.readLine();
 					
 					final Gson gson = new Gson();
-					return gson.fromJson(data, HashMap.class);
+					try
+                    {
+	                    return gson.fromJson(data, HashMap.class);
+                    }
+                    catch (JsonSyntaxException e)
+                    {
+	                    e.printStackTrace();
+                    }
 				}
 				catch (final MalformedURLException e)
 				{

@@ -17,6 +17,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 	private RSSListAdaptor rssadaptor = null;
 	public Button test;
 	public static String url;
+	public static TextView impre;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -50,6 +52,9 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 		Bundle zielkorb = getIntent().getExtras();
 		url = zielkorb.getString("url");
 		test = (Button) findViewById(R.id.backfeed);
+		impre=(TextView)findViewById(R.id.impress_news_feed);
+		impre.setTextColor(Color.GREEN);
+		impre.setOnClickListener(this);
 		ActivityRegistry.register(this);
 		test.setOnClickListener(this);
 		itemlist = new ArrayList<RSSItem>();
@@ -72,6 +77,11 @@ public class RssReaderActivity extends ListActivity implements OnClickListener
 			 * startActivity(in); }
 			 */
 			Intent in = new Intent(this, Newsreaderselect.class);
+			startActivity(in);
+		}
+		else if(v==impre)
+		{
+			Intent in = new Intent(RssReaderActivity.this, ImpressActivity.class);
 			startActivity(in);
 		}
 		

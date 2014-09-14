@@ -5,8 +5,25 @@ App für den Server Nullcraft, verändern des Codes ist nicht gestattet, verwend
 des Autors und dieses Projektes im Impressum erlaubt.
 Autor: Daniel Brüggemann, (Budy93)
 
-Die aktuelle Version ist Beta v.0.8.2.4.E2
+Die aktuelle Version ist Beta 0.8.2.5.E1
 mit folgenden Changelog:
+
+Update Beta 0.8.2.5.E1(822716)
+===Changelog===
+Version: Beta 0.8.2.5.E1
+Codename: Iron.Flattervieh
+Changes:
+!Rechtschreibfehler korrektur.
+*Impressumanpassungen.
+*Fehlerkorrektur bei Google-Gson Lizenz Button.
+*Umdesign der Voteseite.
+!Timeout erweitert bei Dynmap um unnötige Fehler zu beheben.
+*Voteseiten sind nun einzell abrufbar.
+*Änderung des Versionierungslinkes
+*Einfügung des Bugtrackerlink von Github später MantisBT wo auch Verschläge geäußert werden können.
+
+vorheriges Updates:
+
 Update Beta 0.8.2.4.E2(822714)
 ===Changelog===
 Version: Beta 0.8.2.4.E2
@@ -17,8 +34,6 @@ Changes:
 *Weitere Fehlerabfangungen integriert (I love Try and Catche).
 !Fehlerbehebung in der netzwerkthreadSetGUI zur Nullpointexception führte
 !Fehlerbehebung in Votemenü.
-
-vorheriges Updates:
 
 Update Beta 0.8.2.3.E2(822713)
 ===Changelog===

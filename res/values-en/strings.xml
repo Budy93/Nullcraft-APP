@@ -1,0 +1,34 @@
+<resources>
+
+    <string name="Benutzer">Username</string>
+    <string name="Dynmap">Dynmap</string>
+    <string name="Keine_Netzwerk">No Network</string>
+    <string name="Kontack">Contact</string>
+    <string name="SPlayer">Players Online</string>
+    <string name="Voten">Votesites</string>
+    <string name="ankuendigung">Announcement</string>
+    <string name="app_emc">Nullapp Emercency Quit</string>
+    <string name="app_impressum">Nullapp Contact</string>
+    <string name="app_name">Nullapp imprint</string>
+    <string name="app_vote">Nullcraft Votesite</string>
+    <string name="beenden">Quit</string>
+    <string name="craftlist">Voting on Craftlist</string>
+    <string name="erinnern">Remind on Voting?</string>
+    <string name="gevotet_heute">Voted Today?</string>
+    <string name="haupt">Mainmenu</string>
+    <string name="impressum">imprint</string>
+    <string name="impressum_Textview">>>>Go to imprint&lt;&lt;&lt;</string>
+    <string name="latency">Ping</string>
+    <string name="neuladen">Reload</string>
+    <string name="offline">Placeholder</string>
+    <string name="planteminecraft">Voting on Planetminecraft</string>
+    <string name="serverlistEU">Voting on minecraft-server.eu</string>
+    <string name="serverlistNet">Voting on minecraft-server.net</string>
+    <string name="tech">Tec. News</string>
+    <string name="teststring">Testing</string>
+    <string name="update_p">Check for Update</string>
+    <string name="wartungstext">Planned maintenance</string>
+    <string name="zuruck">Back</string>
+    <string name="habe_vote">Have you Voted check here</string>
+
+</resources>

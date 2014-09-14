@@ -1,29 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/bg_affe"
-    android:layout_height="match_parent" >
-
-    <Button
-        android:id="@+id/zurucke_vote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="99dp"
-        android:text="@string/zuruck" />
-
-    <TextView
-        android:id="@+id/votelinks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/habenvotefrage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/leer"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_affe" >
 
     <EditText
         android:id="@+id/eingabebenuzt"
@@ -56,5 +35,80 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="22dp"
         android:text="@string/teststring" />
+
+    <Button
+        android:id="@+id/impressum_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/impressum" />
+
+    <TextView
+        android:id="@+id/votelinks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/habenvotefrage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:linksClickable="true"
+        android:text="@string/leer"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/votefrage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/gevotet_heute"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/zurucke_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/impressum_vote"
+        android:layout_alignLeft="@+id/eingabebenuzt"
+        android:layout_alignRight="@+id/prue_bt"
+        android:layout_marginBottom="34dp"
+        android:text="@string/zuruck" />
+
+    <TextView
+        android:id="@+id/plantminecraft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/votefrage"
+        android:layout_marginTop="15dp"
+        android:text="@string/planteminecraft"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/ServerNet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ServerEU"
+        android:text="@string/serverlistNet"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/ServerEU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Craftlist"
+        android:text="@string/serverlistEU"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/Craftlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/plantminecraft"
+        android:text="@string/craftlist"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
