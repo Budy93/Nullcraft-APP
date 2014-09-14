@@ -237,7 +237,7 @@ public class UtilapiImpl implements Utilapi
 				{
 					URLConnection urlConnection = new URL("http://google.de")
 					        .openConnection();
-					// urlConnection.setConnectTimeout(1000);
+					urlConnection.setConnectTimeout(5000);
 					urlConnection.connect();
 					setAusgabe(true);
 				}

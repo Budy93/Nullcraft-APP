@@ -35,6 +35,15 @@
             android:layout_below="@+id/backfeed"
             android:text="@string/zuruck" />
 
+        <Button
+            android:id="@+id/impressum_newsselect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/aenderungshist"
+            android:layout_alignRight="@+id/aenderungshist"
+            android:layout_below="@+id/aenderungshist"
+            android:text="@string/impressum" />
+
     </RelativeLayout>
 
 </TableLayout>

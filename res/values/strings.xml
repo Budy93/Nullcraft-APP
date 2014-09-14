@@ -34,9 +34,20 @@
 	<string name="habe_vote">Schon gevotet?</string>
 	<string name="teststring">Prüfen</string>
 	<string name="changelog">Changelog</string>
-	<string name="lizenzen_google_gson">Lizenzen Google-Gson</string>
+	<string name="lizenzen_google_gson">Lizenzen\nGoogle-Gson</string>
 	<string name="title">Title</string>
 	<string name="date">Date</string>
 	<string name="description">Description</string>
 	<string name="erinnern">Ans Voten Erinnern?</string>
+	<string name="impressum_main">Impress-\num</string>
+	<string name="impressum_Textview">&gt;&gt;&gt;Impressum hier berühren&lt;&lt;&lt;</string>
+	<string name="gevotet_heute">Und heute schon gevotet?</string>
+	<string name="craftlist">Voten auf Craftlist</string>
+	<string name="serverlistNet">Voten auf minecraft-serverlist.net</string>
+	<string name="serverlistEU">Voten auf minecraft-server.eu</string>
+	<string name="planteminecraft">Voten auf planetminecraft</string>
+	<string name="app_dynmap">Nullcraft Dynmap</string>
+	<string name="app_vote">Nullcraft Voteseiten</string>
+	<string name="app_impressum">Nullapp Impressum</string>
+	<string name="change">Changelog</string>
 </resources>

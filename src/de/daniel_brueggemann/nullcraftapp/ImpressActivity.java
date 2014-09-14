@@ -55,9 +55,9 @@ public class ImpressActivity extends Activity implements OnClickListener
 		apache = (Button) findViewById(R.id.lizenz);
 		apache.setOnClickListener(this);
 		impressum = (TextView) findViewById(R.id.impress);
-		String Text = "Version: Beta 0.8.2.4.E2"
+		String Text = "Version: Beta 0.8.2.5.E1"
 		        + "\n"
-		        + "Codename: Iron"
+		        + "Codename: Iron.Flattervieh"
 		        + "\n"
 		        + "Autor: Budy93"
 		        + "\n"
@@ -75,7 +75,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 		        + "\n"
 		        + "\n"
 		        + "\n"
-		        + "Verantwortlich f\u00FCr den Inhalt nach \u00A7 55 Abs. 2 RStV:\n\nMarc Philipp Stahmer\n\nWischhof 3 24802 Kleinvollstedt.\n\nE-Mail:\n\nowner@nullcraft.de"
+		        + "Verantwortlich f\u00FCr den Inhalt nach \u00A7 55 Abs. 2 RStV:\n\nMarc Philipp Stahmer\n\nWischhof 3\n24802 Kleinvollstedt.\n\nE-Mail:\n\nowner@nullcraft.de"
 		        + "\n"
 		        + "\n"
 		        + "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien etc. wird hiermit ausdrücklich widersprochen. Der Betreiber der APP behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen etc., etwa durch Spam-Mails , vor."
@@ -198,6 +198,8 @@ public class ImpressActivity extends Activity implements OnClickListener
 		else if(v == change)
 		{
 			String changtext;
+			String changetext_Beta_0825E1;
+			String changetext_Beta_0824E3;
 			String changetext_Beta_0824E2;
 			String changetext_Beta_0823E1;
 			String changetext_Beta_0822E2;
@@ -210,6 +212,8 @@ public class ImpressActivity extends Activity implements OnClickListener
 			String changtext_Alpha07;
 			String changtext_Alpha06;
 			String changtext_Alpha05;
+			changetext_Beta_0825E1="Update Beta 0.8.2.5.E1(822716)\n===Changelog===\nVersion: Beta 0.8.2.5.E1\nCodename: Iron.Flattervieh\nChanges:\n*Added English Translation\n!Rechtschreibfehler korrektur.\n*Impressumanpassungen.\n*Fehlerkorrektur bei Google-Gson Lizenz Button.\n*Umdesign der Voteseite.\n!Timeout erweitert bei Dynmap um unn\u00F6tige Fehler zu beheben.\n*Voteseiten sind nun einzell abrufbar.\n*\u00C4nderung des Versionierungslinkes\n*Einf\u00FCgung des Bugtrackerlink von Github sp\u00E4ter MantisBT wo auch Verschl\u00E4ge ge\u00E4u\u00DFert werden k\u00F6nnen.\n\n";
+			changetext_Beta_0824E3="Update Beta 0.8.2.4.E3(822715)\n===Changelog===\nVersion: Beta 0.8.2.4.E3\nCodename: Iron\nChanges:\n*Einf\u00FCgung eines weiteren Votelinks.\n*Rechtschreibfehler korrektur.\n\n";
 			changetext_Beta_0824E2="Update Beta 0.8.2.4.E1(822714)\n===Changelog===\nVersion: Beta 0.8.2.4.E1\nCodename: Iron\nChanges:\n*\u00C4nderung an Zugriff Schnittstellen.\n*Entfernung alter API Schnittstellen.\n*Weitere Fehlerabfangungen integriert (I love Try and Catche).\n!Fehlerbehebung in der netzwerkthreadSetGUI zur Nullpointexception f\u00FChrte\n!Fehlerbehebung in Votemen\u00FC.\n\n";
 			changetext_Beta_0823E1 = "Update Beta 0.8.2.3.E2(822713)\n===Changelog===\nVersion: Beta 0.8.2.3.E2\nCodename: Minimalistin\nChanges:\n!Falsche Zurordnungen entfernt\n!Fehler beim Update benachrichtiger behoben\n*Einf\u00FChrung neuer Api Schnittstellen\n*Ein Voteerinnere, der ein alle 24h ans Voten erinnert.\n*Checkbox die explezit um erlaubtnis dazu fragt.\n*Neue Aktivity, dass erlaubt zu Pr\u00FCfen, ob ein bestimmter Spieler gevotet hat.\n*Voteservice und Reciver\n*Die Dynmap \u00F6ffnet sich nun erst, wenn Internet vorhanden ist.\n\n";
 			changetext_Beta_0822E2 = "Update Beta 0.8.2.2.E2\n===Changelog===\nVersion: Beta 0.8.2.2.E2\nCodename: Rock\nChanges:\n!Fehlerbehebung die bei Fehlenen Netz zum Absturtz der App f\u00FChrte\n*Vorbereitungen f\u00FCr neue Schnittstellen\n\n";
@@ -291,7 +295,7 @@ public class ImpressActivity extends Activity implements OnClickListener
 			        + "\n"
 			        + "* MODT Version von Nullcraft Link zur Dynmap Autolink zur Voteseite"
 			        + "\n" + "\n" + "----------------" + "\n" + "\n";
-			changtext = changetext_Beta_0823E1+changetext_Beta_0823E1 + changetext_Beta_0822E2
+			changtext =changetext_Beta_0825E1 + changetext_Beta_0824E3+changetext_Beta_0824E2+changetext_Beta_0823E1+changetext_Beta_0823E1 + changetext_Beta_0822E2
 			        + changetext_Beta_08822E1 + changetext_Beta_082
 			        + changetext_Beta081 + changtext_Alpha071E3
 			        + changtext_Alpha071E2 + changtext_Alpha071E1

@@ -8,21 +8,27 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
  * @author Daniel Brüggemann
  *
  */
-public class Newsreader extends Activity
+public class Newsreader extends Activity implements OnClickListener
 {
 	
 	private WebView browser;
+	public static TextView impress;
 	
 	@SuppressLint("SetJavaScriptEnabled")
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +38,9 @@ public class Newsreader extends Activity
 		ActivityRegistry.register(this);
 		// ActivityRegistry.register(this);
 		browser = (WebView) findViewById(R.id.webView1);
+		impress=(TextView)findViewById(R.id.impressum_news_dis);
+		impress.setTextColor(Color.WHITE);
+		impress.setOnClickListener(this);
 		WebSettings webSettings = browser.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		// browser.setWebViewClient(new Browser());
@@ -154,4 +163,14 @@ public class Newsreader extends Activity
 	 * 
 	 * }
 	 */
+
+	@Override
+    public void onClick(View v)
+    {
+	   if(v==impress)
+	   {
+		   Intent in = new Intent(Newsreader.this, ImpressActivity.class);
+		   startActivity(in);
+	   }
+    }
 }

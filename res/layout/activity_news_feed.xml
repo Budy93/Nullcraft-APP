@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/LinearLayout2"
     android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/bg_affe"
-    android:layout_height="fill_parent">
- 
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="fill_parent"
-            android:layout_height="403dp" />
+    android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/backfeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zuruck" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/backfeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zuruck" />
+
+    <TextView
+        android:id="@+id/impress_news_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/impressum_Textview" />
 
 </LinearLayout>

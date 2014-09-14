@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.daniel_brueggemann.nullcraftapp"
-    android:versionCode="12"
-    android:versionName="Beta 0.8.2.4.E2" android:installLocation="auto">
+    android:versionCode="16"
+    android:versionName="Beta 0.8.2.5.E1(822716)" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -21,13 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-	<activity android:name="ImpressActivity" android:label="@string/app_name"></activity>
-	<activity android:name="Dynmap" android:label="@string/app_name"></activity>
+	<activity android:name="ImpressActivity" android:label="@string/app_impressum"></activity>
+	<activity android:name="Dynmap" android:label="@string/app_dynmap"></activity>
 	<activity android:label="@string/app_emc" android:name="Emc"></activity>
 	<activity android:name="Newsreaderselect" android:label="@string/app_name_new"></activity>
 	<activity android:name="Newsreader" android:label="@string/app_name_new"></activity>
 	<activity android:name="RssReaderActivity" android:label="@string/app_name_new"></activity>
-	<activity android:name="VoteActivity" android:icon="@drawable/ic_launcher"></activity>
+	<activity android:name="VoteActivity" android:icon="@drawable/ic_launcher" android:screenOrientation="portrait" android:label="@string/app_vote"></activity>
 	<receiver android:name=".utilapi.votealarmReciver" android:label="@string/app_name"></receiver>
 	<service android:name=".utilapi.votealarmNotficationcreateService" android:enabled="true" android:label="@string/app_name"></service>
 	<receiver android:enabled="false" android:name=".utilapi.voteBooteReciver">

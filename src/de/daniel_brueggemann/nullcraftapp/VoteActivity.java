@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -40,15 +41,25 @@ import de.daniel_brueggemann.nullcraftapp.utilapi.votealarmReciver;
 public class VoteActivity extends Activity implements OnClickListener
 {
 	public final String Votelinksmsg = "http://craftlist.de/vote/3"
-	        + "\n"
+			+ "\n"
 	        + "\n"
 	        + "http://www.minecraft-serverlist.net/vote/12186"
 	        + "\n"
 	        + "\n"
 	        + "http://minecraft-server.eu/vote/index/80600"
 	        + "\n"
-	        + "Bitte beachte das die erinnerung noch 5nach 18Uhr erscheinen wird, der Fehler wird aber bearbeitet :)";
+	        + "\n"
+	        + "http://www.planetminecraft.com/server/nullcraft-network/vote/";
 	public static TextView voteja;
+	public static TextView craftlist;
+	public static TextView serverlist;
+	public static TextView serverEU;
+	public static TextView planteminecraft;
+	public static Button impressum;
+	public final String craftlink="http://craftlist.de/vote/3";
+	public final String serverlink="http://www.minecraft-serverlist.net/vote/12186";
+	public final String serverEUlink="http://minecraft-server.eu/vote/index/80600";
+	public final String plantlink="http://www.planetminecraft.com/server/nullcraft-network/vote/";
 	public static Button zuruck;
 	public static Button pruef;
 	public static EditText benutzername;
@@ -130,9 +141,24 @@ public class VoteActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_voten);
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		ActivityRegistry.register(this);
-		voteja = (TextView) findViewById(R.id.votelinks);
+		voteja=(TextView)findViewById(R.id.votelinks);
 		zuruck = (Button) findViewById(R.id.zurucke_vote);
 		zuruck.setOnClickListener(this);
+		impressum=(Button)findViewById(R.id.impressum_vote);
+		impressum.setOnClickListener(this);
+		//Definierung der Votelinks und Klickbar machen
+		craftlist=(TextView)findViewById(R.id.Craftlist);
+		craftlist.setTextColor(Color.BLUE);
+		craftlist.setOnClickListener(this);
+		serverlist=(TextView)findViewById(R.id.ServerNet);
+		serverlist.setTextColor(Color.BLUE);
+		serverlist.setOnClickListener(this);
+		serverEU=(TextView)findViewById(R.id.ServerEU);
+		serverEU.setTextColor(Color.BLUE);
+		serverEU.setOnClickListener(this);
+		planteminecraft=(TextView)findViewById(R.id.plantminecraft);
+		planteminecraft.setTextColor(Color.BLUE);
+		planteminecraft.setOnClickListener(this);
 		pruef = (Button) findViewById(R.id.prue_bt);
 		pruef.setOnClickListener(this);
 		benutzername = (EditText) findViewById(R.id.eingabebenuzt);
@@ -288,9 +314,40 @@ public class VoteActivity extends Activity implements OnClickListener
 				e.printStackTrace();
 			}
 		}
-		if(v == zuruck)
+		else if(v == zuruck)
 		{
 			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
+		}
+		else if(v==impressum)
+		{
+			Intent in=new Intent(this, ImpressActivity.class);
+			startActivity(in);
+		}
+		else if(v==craftlist)
+		{
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse(craftlink));
+			startActivity(intent);
+		}
+		else if(v==serverlist)
+		{
+			final Intent in=new Intent(Intent.ACTION_VIEW);
+			in.setData(Uri.parse(serverlink));
+			startActivity(in);
+		}
+		else if(v==serverEU)
+		{
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri
+			        .parse(serverEUlink));
+			startActivity(intent);
+		}
+		else if(v==planteminecraft)
+		{
+			final Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri
+			        .parse(plantlink));
 			startActivity(intent);
 		}
 	}
@@ -328,7 +385,17 @@ public class VoteActivity extends Activity implements OnClickListener
 				}
 			};
 			Thread t = new Thread(r);
-			t.start();
+			try
+            {
+	            t.start();
+            }
+            catch (Exception e)
+            {
+            	Toast.makeText(
+    			        this,
+    			        "Fehler 219: "+e.toString(),
+    			        Toast.LENGTH_LONG).show();
+            }
 		}
 	}
 	

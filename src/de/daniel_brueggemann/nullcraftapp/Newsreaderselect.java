@@ -28,6 +28,7 @@ public class Newsreaderselect extends Activity implements OnClickListener
 	public static Button Technews;
 	public static Button Aenderungsnews;
 	public static Button History;
+	public static Button Impressum;
 	
 	@Override
 	protected void onStart()
@@ -79,6 +80,8 @@ public class Newsreaderselect extends Activity implements OnClickListener
 		Technews = (Button) findViewById(R.id.backfeed);
 		Aenderungsnews = (Button) findViewById(R.id.ankuedinews);
 		History = (Button) findViewById(R.id.aenderungshist);
+		Impressum=(Button)findViewById(R.id.impressum_newsselect);
+		Impressum.setOnClickListener(this);
 		Technews.setOnClickListener(this);
 		Aenderungsnews.setOnClickListener(this);
 		History.setOnClickListener(this);
@@ -144,6 +147,11 @@ public class Newsreaderselect extends Activity implements OnClickListener
 			Transfer.putString("url", historyurl);
 			Intent in = new Intent(this, MainActivity.class);
 			in.putExtras(Transfer);
+			startActivity(in);
+		}
+		else if(v==Impressum)
+		{
+			Intent in = new Intent(Newsreaderselect.this, ImpressActivity.class);
 			startActivity(in);
 		}
 	}

@@ -8,21 +8,26 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
  * @author Daniel Brüggemann
  *
  */
-public class Dynmap extends Activity
+public class Dynmap extends Activity implements OnClickListener
 {
 	
 	private WebView browser;
+	public TextView impree;
 	
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -40,6 +45,9 @@ public class Dynmap extends Activity
 		 * Intent(this, Emc.class); in.putExtras(Transfer); startActivity(in); }
 		 */
 		browser = (WebView) findViewById(R.id.mapview);
+		impree=(TextView)findViewById(R.id.impressum_dyn);
+		impree.setTextColor(Color.WHITE);
+		impree.setOnClickListener(this);
 		WebSettings webSettings = browser.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		// browser.setWebViewClient(new Browser());
@@ -147,4 +155,14 @@ public class Dynmap extends Activity
 	 * 
 	 * }
 	 */
+
+	@Override
+    public void onClick(View v)
+    {
+	   if(v==impree)
+	   {
+		    Intent in = new Intent(Dynmap.this, ImpressActivity.class);
+			startActivity(in);
+	   }
+    }
 }
